@@ -1,5 +1,6 @@
 import React, {Component, useState} from 'react'
 import {useGlobalState} from "../config/store"
+import {loginUser} from "../services/authServices"
 
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()
@@ -18,13 +19,15 @@ const Login = ({history}) => {
 
     function handleSubmit(event){
         event.preventDefault()
-        dispatch({
-            type: "setLoggedInUser",
-            data: userDetails.email
-        })
-
-        console.log(store)
-        history.push('/')
+        loginUser(userDetails)
+            .then(() => {
+                dispatch({
+                    type: "setLoggedInUser",
+                    data: userDetails.email
+                })
+                history.push('/')
+            })
+            .catch((err) => {console.log(err)})
     }
 
     return (
@@ -32,7 +35,7 @@ const Login = ({history}) => {
             <h1>Welcome to the Brain Train Client Portal</h1>
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
-                <input className="login_fields" name="pass" onChange={handleChange} type="password" placeholder="password"></input>
+                <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
                 <div>
                     <input type="checkbox"></input>
                     <label> Remember Me</label>

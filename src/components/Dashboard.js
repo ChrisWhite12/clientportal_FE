@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
+import {useGlobalState} from '../config/store';
 import '../App.css';
 // react-bootstrap components
 import {Container, Row, Col} from 'react-bootstrap';
 
-class Dashboard extends React.Component {
-  render() {
+    
+const Dashboard = () => {
+
+    const {store} = useGlobalState()
+    const {loggedInUser} = store
+    
     return (
         <div>
             <div className="main_sec">
