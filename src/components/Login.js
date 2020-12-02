@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react'
 import {useGlobalState} from "../config/store"
 import {loginUser} from "../services/authServices"
+import {Link} from 'react-router-dom'
 
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()
@@ -40,7 +41,9 @@ const Login = ({history}) => {
                     <input type="checkbox"></input>
                     <label> Remember Me</label>
                 </div>
-                <a>Forgot Password</a>
+                <Link to="/forgot_password">
+                    Forgot password
+                </Link>
                 <input id="login_btn" type="submit" value="Log In"></input>
                 <input id="sign_up_btn" type="button" value="Sign Up"></input>
             </form>

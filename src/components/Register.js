@@ -4,7 +4,10 @@ import {registerUser} from "../services/authServices"
 
 const Register = ({history}) => {
 
-    const [userDetails, setUserDetails] = useState()
+    const [userDetails, setUserDetails] = useState({
+        password: '',
+        password_confirm: ''
+    })
     const {store, dispatch} = useGlobalState()
 
     function handleChange(event){
@@ -17,16 +20,22 @@ const Register = ({history}) => {
     }
 
     function handleSubmit(event){
-        event.preventDefault()
-        registerUser(userDetails)
-            .then(() => {
-                dispatch({
-                    type: "setLoggedInUser",
-                    data: userDetails.email
+
+        if(userDetails["password"] === userDetails["password_confirm"]){
+            event.preventDefault()
+            registerUser(userDetails)
+                .then(() => {
+                    dispatch({
+                        type: "setLoggedInUser",
+                        data: userDetails.email
+                    })
+                    history.push('/')
                 })
-                history.push('/')
-            })
-            .catch((err) => {console.log(err)})
+                .catch((err) => {console.log(err)})
+        }
+        else{
+            console.log('fail - password do not match')
+        }
     }
 
     return (
@@ -35,7 +44,8 @@ const Register = ({history}) => {
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" type="text" placeholder="email" onChange={handleChange}></input>
                 <input className="login_fields" name="password" type="password" placeholder="password" onChange={handleChange}></input>
-                <input className="login_fields" name="pass_conf" type="password" placeholder="confirm password" onChange={handleChange}></input>
+                <input className="login_fields" name="password_confirm" type="password" placeholder="confirm password" onChange={handleChange}></input>
+                {!userDetails["password"] ? <p></p> : (userDetails["password"] === userDetails["password_confirm"])? <p style={{color: "green"}}>passwords match</p>: <p style={{color: "red"}}>passwords don't match</p>}
                 <div>
                     <input type="checkbox"></input>
                     <label>Agree to terms and conditions</label>

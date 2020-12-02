@@ -32,9 +32,9 @@ const Nav = () => {
                 <Link to="/register">
                     Register
                 </Link>
-                <a href="#" onClick={onLogout}>
+                <button id="logout_btn" onClick={onLogout}>
                     Logout
-                </a>
+                </button>
                 <Link to="/">
                     Dashboard
                 </Link>
