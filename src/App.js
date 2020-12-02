@@ -1,8 +1,10 @@
 import './App.css';
 import Nav from './components/Nav';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useReducer, useEffect } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+// import Dashboard from './views/Dashboard';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login.js';
 import Register from './components/Register.js'
