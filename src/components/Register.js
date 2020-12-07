@@ -20,9 +20,8 @@ const Register = ({history}) => {
     }
 
     function handleSubmit(event){
-
+        event.preventDefault()
         if(userDetails["password"] === userDetails["password_confirm"]){
-            event.preventDefault()
             registerUser(userDetails)
                 .then(() => {
                     dispatch({
