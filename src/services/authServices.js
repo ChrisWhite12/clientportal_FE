@@ -19,8 +19,29 @@ async function logoutUser(userInfo){
     return response.data
 }
 
+async function forgotPassword(email){
+    const response =  await api.post("/user/forgot_password", {email})
+    console.log("user back from server", response)
+    return response
+}
+
+// async function updateUser(userInfo){
+//     const response =  await api.post("/user", {email})
+//     console.log("user back from server", response)
+//     return response
+// }
+
+async function resetToken(token){
+    const response = await api.get(`/user/reset/${token}`)
+    console.log("user back from server", response)
+    return response
+}
+
 export {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    forgotPassword,
+    resetToken
+
 }

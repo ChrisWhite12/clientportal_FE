@@ -1,5 +1,6 @@
 import React, {Component, useState} from 'react'
 import {Link} from 'react-router-dom'
+import {forgotPassword} from "../services/authServices"
 
 const ForgotPassword = () => {
 
@@ -11,6 +12,8 @@ const ForgotPassword = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        console.log('email', email)
+        forgotPassword(email)
         console.log('submit')
     }
 

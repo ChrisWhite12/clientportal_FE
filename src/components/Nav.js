@@ -1,17 +1,19 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
 import {logoutUser} from '../services/authServices'
 
 const Nav = () => {
 
     const {dispatch,store} = useGlobalState()
+    const history = useHistory()
 
     const onLogout = () => {
         console.log('logout')
         logoutUser()
             .then((res) => {
                 console.log("res", res)
+                history.push('/sign_in')
             })
             .catch((err) => {
                 console.log("err", err)
