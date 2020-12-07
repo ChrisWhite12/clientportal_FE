@@ -3,50 +3,29 @@ import {useGlobalState} from "../config/store"
 
 const Test = () => {
 
-const url = "https://api.au1.cliniko.com/v1/appointment_types";
-
-fetch(url, {
-  method: "GET",
-  headers: {
-    "Authorization" : "MS01MTE3MDQ5MzAzMDI1NjQ5MzAtcTZueHZtalJ2NzRoMVdKbkdKUk9kTHVtd3Y2d3UzbFc-au2",
-    "Accept" : "application/json",
-    "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-  }
-})
-  .then(resp => resp.json())
-  .then(function(data) {
-    console.log(data);
-  })
-  .catch(function(error) {
-    console.log(error);
-  });
-
-  export default Test;
-
-
-// const Cliniko = require('../').Cliniko
-// const opts = require('./config')
-// const cliniko = new Cliniko(opts)
-// const search = [
-//   ['first_name ~~ ?', 'Hagen']
-// ]
-// cliniko.getPatients({ search })
-//   .then((results) => {
-//     console.log('Patient search')
-//     console.log(JSON.stringify(results, null, 2))
-//   })
-
-
-function dataOut() {
-
-
-    var options = {
-      "headers" : {
-        "Authorization" : "MS01MTE3MDQ5MzAzMDI1NjQ5MzAtcTZueHZtalJ2NzRoMVdKbkdKUk9kTHVtd3Y2d3UzbFc-au2",
-        "Accept" : "application/json",
+    fetch("https://api.au2.cliniko.com/v1/appointment_types", {
+        headers: {
+        Accept: "application/json",
+        Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
         "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-    }
-  };
-    var response = UrlFetchApp.fetch("https://api.cliniko.com/v1/users", options);
-    Logger.log(response.getContentText());
-};
+        }
+        }
+        )
+    .then(response => response.json())
+    .then(data => console.log(data))
+
+export default Test;
+
+//if you want a response in the console copy and paste the code below...you need a proxy url because chrome
+//doesn't trust the api
+
+// fetch("https://cors-anywhere.herokuapp.com/https://api.au2.cliniko.com/v1/appointment_types", {
+// headers: {
+// Accept: "application/json",
+// Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
+// "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
+// }
+// }
+// )
+// .then(response => response.json())
+// .then(data => console.log(data))

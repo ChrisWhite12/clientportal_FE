@@ -54,6 +54,9 @@
 .nav-links a{
   color: white;
   text-decoration: none;
+  display: table-cell; 
+  position: relative; 
+  padding: 15px 0;
 }
 
 .nav-links a:visited{
@@ -62,7 +65,28 @@
 
 /* This isn't working yet... hover same color as original website and trying to make underline animation the same*/
 .nav-links a:hover{
-  color: #ff7300;
+    color: #ff7300;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+  }
+  a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #ff7300;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  a:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
+  /* color: #ff7300;
   display: flex;
 	 flex-flow: column;
 	 max-width: 100%;
@@ -91,7 +115,7 @@
     opacity: 0;
     background-color: #ff7300;
     }
-}
+} */
 
 .login_card{
   height: 50vh;
