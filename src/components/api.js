@@ -6,7 +6,7 @@ const Test = () => {
     // fetch("https://api.au2.cliniko.com/v1/appointment_types", {
     //     headers: {
     //     Accept: "application/json",
-    //     Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
+    //     Authorization: "Basic API_Key",
     //     "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
     //     }
     //     }

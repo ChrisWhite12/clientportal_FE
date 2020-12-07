@@ -16,6 +16,8 @@ import ResetPassword from './components/ResetPassword';
 
 
 function App() {
+
+  const API_KEY = process.env.REACT_APP_API_KEY;
   
   // initial state for state reducer
   const initialState = {
