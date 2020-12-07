@@ -4,6 +4,7 @@ import '../App.css';
 // react-bootstrap components
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
+import Test from "../components/api.js"
 
     
 const Dashboard = () => {
@@ -28,6 +29,9 @@ const Dashboard = () => {
                         </Row>
                         <Row>
                             <p>Your Next Appointment Is: {dummy_appointment["date"]} -- {dummy_appointment["time"]} -- {dummy_appointment["location"]}</p>
+                        </Row>
+                        <Row>
+                            <Test />
                         </Row>
                     </Container>
                 </Col>
