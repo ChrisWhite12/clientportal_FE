@@ -3,10 +3,11 @@ import api from '../config/api'
 async function getProfile(id){
     try{
         const response =  await api.get(`/profile/${id}`)
-        console.log("register from server", response)
+        console.log("getProfile from server", response)
         return response.data
     }
     catch(error){
+        console.log("getProfile from server")
         throw(error)
     }
 }
@@ -14,10 +15,11 @@ async function getProfile(id){
 async function createProfile(userInfo){
     try{
         const response =  await api.post(`/profile/create`, userInfo)
-        console.log("register from server", response)
+        console.log("createProfile from server", response)
         return response.data
     }
     catch(error){
+        console.log("createProfile from server")
         throw(error)
     }
 }
@@ -25,10 +27,11 @@ async function createProfile(userInfo){
 async function updateProfile(userInfo){
     try{
         const response =  await api.put(`/profile/${userInfo._id}`, userInfo)
-        console.log("register from server", response)
+        console.log("updateProfile from server", response)
         return response.data
     }
     catch(error){
+        console.log("updateProfile from server")
         throw(error)
     }
 }
@@ -36,10 +39,11 @@ async function updateProfile(userInfo){
 async function deleteProfile(id){
     try{
         const response =  await api.delete(`/profile/${id}`)
-        console.log("register from server", response)
+        console.log("deleteProfile from server", response)
         return response.data
     }
     catch(error){
+        console.log("deleteProfile from server")
         throw(error)
     }
 }

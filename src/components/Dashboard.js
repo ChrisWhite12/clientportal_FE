@@ -6,6 +6,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 import Test from "../components/api.js"
 import {getApiData} from "../services/authServices"
+import { getProfile } from '../services/profileServices';
 
     
 const Dashboard = () => {
@@ -18,6 +19,12 @@ const Dashboard = () => {
     //test API by calling getApiData from backend
     useEffect(() => {
         getApiData().then((data) => {
+            console.log(data)
+        })
+        .catch((err) => {console.log(err)})
+
+        //test to see if profile can be returned
+        getProfile(1).then((data) => {
             console.log(data)
         })
         .catch((err) => {console.log(err)})
@@ -38,9 +45,6 @@ const Dashboard = () => {
                         </Row>
                         <Row>
                             <p>Your Next Appointment Is: {dummy_appointment["date"]} -- {dummy_appointment["time"]} -- {dummy_appointment["location"]}</p>
-                        </Row>
-                        <Row>
-                            {/* <Test /> */}
                         </Row>
                     </Container>
                 </Col>

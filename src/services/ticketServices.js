@@ -7,6 +7,7 @@ async function getTicket(id){
         return response.data
     }
     catch(error){
+        console.log("get ticket from server")
         throw(error)
     }
 }
@@ -18,6 +19,7 @@ async function createTicket(userInfo){
         return response.data
     }
     catch(error){
+        console.log("createTicket from server")
         throw(error)
     }
 }
@@ -29,6 +31,7 @@ async function updateTicket(userInfo){
         return response.data
     }
     catch(error){
+        console.log("updateTicket from server")
         throw(error)
     }
 }
@@ -40,6 +43,7 @@ async function deleteTicket(id){
         return response.data
     }
     catch(error){
+        console.log("deleteTicket from server")
         throw(error)
     }
 }
