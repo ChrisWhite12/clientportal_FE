@@ -37,11 +37,17 @@ async function resetToken(token){
     return response
 }
 
+async function getApiData(){
+    const response = await api.get("/api")
+    console.log("user back from server", response)
+    return response
+}
+
 export {
     registerUser,
     loginUser,
     logoutUser,
     forgotPassword,
-    resetToken
-
+    resetToken,
+    getApiData
 }
