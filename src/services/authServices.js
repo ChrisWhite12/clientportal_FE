@@ -1,46 +1,67 @@
 import api from '../config/api'
 
 async function registerUser(userInfo){
-    console.log("userinfo", userInfo)
-    const response =  await api.post("/user/register", userInfo)
-    console.log("user back from server", response)
-    return response.data
+    try{
+        console.log("userinfo", userInfo)
+        const response =  await api.post("/user/register", userInfo)
+        console.log("register from server", response)
+        return response.data
+    }
+    catch(error){
+        throw(error)
+    }
 }
 
 async function loginUser(userInfo){
     const response =  await api.post("/user/login", userInfo)
-    console.log("user back from server", response)
+    console.log("login from server", response)
     return response.data
 }
 
 async function logoutUser(userInfo){
     const response =  await api.get("/user/logout", userInfo)
-    console.log("user back from server", response)
+    console.log("logout from server", response)
     return response.data
 }
 
 async function forgotPassword(email){
-    const response =  await api.post("/user/forgot_password", {email})
-    console.log("user back from server", response)
-    return response
+    try{
+        const response =  await api.post("/user/forgot_password", {email})
+        console.log("forgotPassword from server", response)
+        return response
+    }
+    catch(err){
+        throw(err)
+    }
 }
 
-// async function updateUser(userInfo){
-//     const response =  await api.post("/user", {email})
-//     console.log("user back from server", response)
-//     return response
-// }
+async function updateUser(userInfo,token){
+    try{
+        const response =  await api.put(`/user/${token}`, userInfo)
+        console.log("user back from server", response)
+        return response
+    }
+    catch(err){
+        throw(err)
+    }
+}
 
 async function resetToken(token){
     const response = await api.get(`/user/reset/${token}`)
-    console.log("user back from server", response)
+    console.log("resetToken from server", response)
     return response
 }
 
 async function getApiData(){
-    const response = await api.get("/api")
-    console.log("user back from server", response)
-    return response
+    try{
+        const response = await api.get("/api")
+        console.log("getApiData from server", response)
+        return response
+    }
+    catch(err){
+        throw(err)
+    }
+    
 }
 
 export {
@@ -49,5 +70,6 @@ export {
     logoutUser,
     forgotPassword,
     resetToken,
-    getApiData
+    getApiData,
+    updateUser
 }

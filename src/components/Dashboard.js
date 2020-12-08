@@ -17,7 +17,10 @@ const Dashboard = () => {
 
     //test API by calling getApiData from backend
     useEffect(() => {
-        getApiData()
+        getApiData().then((data) => {
+            console.log(data)
+        })
+        .catch((err) => {console.log(err)})
     },[])
     
     return (
@@ -37,7 +40,7 @@ const Dashboard = () => {
                             <p>Your Next Appointment Is: {dummy_appointment["date"]} -- {dummy_appointment["time"]} -- {dummy_appointment["location"]}</p>
                         </Row>
                         <Row>
-                            <Test />
+                            {/* <Test /> */}
                         </Row>
                     </Container>
                 </Col>

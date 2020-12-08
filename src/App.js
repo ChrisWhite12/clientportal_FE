@@ -34,7 +34,7 @@ function App() {
           <Route path='/sign_in' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/forgot_password' component={ForgotPassword} />
-          <Route path='/reset_password/:token' component={ResetPassword} />
+          <Route path='/reset_password/:token' render={(props) => <ResetPassword {...props} />}/>
         </Switch>
       </div>
       </Router>

@@ -13,15 +13,19 @@ const Nav = () => {
         logoutUser()
             .then((res) => {
                 console.log("res", res)
+                dispatch({
+                    type: "setLoggedInUser",
+                    data: null
+                })
                 history.push('/sign_in')
             })
             .catch((err) => {
                 console.log("err", err)
             })
-        dispatch({
-            type: "setLoggedInUser",
-            data: null
-        })
+        // dispatch({
+        //     type: "setLoggedInUser",
+        //     data: null
+        // })
     }
 
 

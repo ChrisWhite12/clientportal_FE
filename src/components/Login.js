@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()
+    const [message,setMessage] = useState('')
     const {store,dispatch} = useGlobalState()
 
     function handleChange(event){
@@ -15,7 +16,7 @@ const Login = ({history}) => {
             ...userDetails,
             [name]: value
         })
-        console.log(userDetails)
+        // console.log(userDetails)
     }
 
     function handleSubmit(event){
@@ -28,7 +29,9 @@ const Login = ({history}) => {
                 })
                 history.push('/')
             })
-            .catch((err) => {console.log(err)})
+            .catch((err) => {
+                setMessage('Invalid email or password')
+            })
     }
 
     return (
@@ -37,6 +40,7 @@ const Login = ({history}) => {
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
+                <p>{message}</p>
                 <div>
                     <input type="checkbox"></input>
                     <label> Remember Me</label>
