@@ -19,7 +19,7 @@ async function createProfile(userInfo){
         return response.data
     }
     catch(error){
-        console.log("createProfile from server")
+        console.log("createProfile from server - errors")
         throw(error)
     }
 }

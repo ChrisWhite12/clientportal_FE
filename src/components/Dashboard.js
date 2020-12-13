@@ -18,16 +18,16 @@ const Dashboard = () => {
 
     //test API by calling getApiData from backend
     useEffect(() => {
-        getApiData().then((data) => {
-            console.log(data)
-        })
-        .catch((err) => {console.log(err)})
+        // getApiData().then((data) => {
+        //     console.log(data)
+        // })
+        // .catch((err) => {console.log(err)})
 
         //test to see if profile can be returned
-        getProfile(1).then((data) => {
-            console.log(data)
-        })
-        .catch((err) => {console.log(err)})
+        // getProfile(1).then((data) => {
+        //     console.log(data)
+        // })
+        // .catch((err) => {console.log(err)})
     },[])
     
     return (
