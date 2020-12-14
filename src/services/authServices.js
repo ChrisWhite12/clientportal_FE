@@ -52,24 +52,11 @@ async function resetToken(token){
     return response
 }
 
-async function getApiData(){
-    try{
-        const response = await api.get("/api")
-        console.log("getApiData from server", response)
-        return response
-    }
-    catch(err){
-        throw(err)
-    }
-    
-}
-
 export {
     registerUser,
     loginUser,
     logoutUser,
     forgotPassword,
     resetToken,
-    getApiData,
     updateUser
 }

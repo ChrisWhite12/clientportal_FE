@@ -5,8 +5,8 @@ import '../App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 import Test from "../components/api.js"
-import {getApiData} from "../services/authServices"
 import { getProfile } from '../services/profileServices';
+import { getPatients } from '../services/apiServices';
 
     
 const Dashboard = () => {
@@ -16,20 +16,6 @@ const Dashboard = () => {
 
     const dummy_appointment = {date: "1/1/21", time: "10:00am", location: "1 Main St"}
 
-    //test API by calling getApiData from backend
-    useEffect(() => {
-        // getApiData().then((data) => {
-        //     console.log(data)
-        // })
-        // .catch((err) => {console.log(err)})
-
-        //test to see if profile can be returned
-        // getProfile(1).then((data) => {
-        //     console.log(data)
-        // })
-        // .catch((err) => {console.log(err)})
-    },[])
-    
     return (
         <div className="main_sec">
         <Container id="Dashboard" fluid="md">
