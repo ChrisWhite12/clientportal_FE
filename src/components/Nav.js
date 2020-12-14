@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
+import { getPatients } from '../services/apiServices'
 import {logoutUser} from '../services/authServices'
 import {createProfile, getProfile, updateProfile } from '../services/profileServices'
 import { createTicket, getTicket } from '../services/ticketServices'
@@ -98,6 +99,18 @@ const Nav = () => {
             })
     }
 
+    const readPatients_btn = () => {
+        console.log('reading patients')
+        
+        getPatients()
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <nav>
             <ul className="nav-links">
@@ -122,12 +135,19 @@ const Nav = () => {
                 <button id="read_ticket" onClick={clickTicket_read}>
                     Read Ticket
                 </button>
+                
+            </ul>
+            <ul className="nav-links">
                 <button id="update_profile" onClick={updateProfile_btn}>
                     Update Profile
+                </button>
+                <button id="read_patients" onClick={readPatients_btn}>
+                    API test - Patients
                 </button>
                 <Link to="/">
                     Dashboard
                 </Link>
+
             </ul>
         </nav>
     )
