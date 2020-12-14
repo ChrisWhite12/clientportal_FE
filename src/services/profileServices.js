@@ -1,8 +1,8 @@
 import api from '../config/api'
 
-async function getProfile(id){
+async function getProfile(){
     try{
-        const response =  await api.get(`/profile/${id}`)
+        const response =  await api.get(`/profile`)
         console.log("getProfile from server", response)
         return response.data
     }
@@ -14,7 +14,7 @@ async function getProfile(id){
 
 async function createProfile(userInfo){
     try{
-        const response =  await api.post(`/profile/create`, userInfo)
+        const response =  await api.post(`/profile`, userInfo)
         console.log("createProfile from server", response)
         return response.data
     }
@@ -26,7 +26,7 @@ async function createProfile(userInfo){
 
 async function updateProfile(userInfo){
     try{
-        const response =  await api.put(`/profile/${userInfo._id}`, userInfo)
+        const response =  await api.put(`/profile/update`, userInfo)
         console.log("updateProfile from server", response)
         return response.data
     }
