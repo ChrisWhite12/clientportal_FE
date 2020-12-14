@@ -6,6 +6,8 @@ import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 
 
+function createClient () {
+
 useEffect(() => {
   // GET request using fetch inside useEffect React hook
   const requestOptions = {
@@ -24,6 +26,7 @@ useEffect(() => {
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
 }, []);
 
+}
 
 // class ClientInfo extends React.Component {
 //   constructor(){
