@@ -1,8 +1,8 @@
 import api from '../config/api'
 
-async function getTicket(id){
+async function getTicket(){
     try{
-        const response =  await api.get(`/ticket/${id}`)
+        const response =  await api.get(`/ticket`)
         console.log("get ticket from server", response)
         return response.data
     }
@@ -14,7 +14,7 @@ async function getTicket(id){
 
 async function createTicket(userInfo){
     try{
-        const response =  await api.post(`/ticket/create`, userInfo)
+        const response =  await api.post(`/ticket`, userInfo)
         console.log("create ticket from server", response)
         return response.data
     }
