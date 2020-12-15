@@ -1,8 +1,8 @@
 import api from '../config/api'
 
-async function getPatients(){
+async function getPatient(){
     try{
-        const response =  await api.get(`/api/patients`)
+        const response =  await api.get(`/api/patient`)
         console.log("getPatients from server", response)
         return response.data
     }
@@ -25,6 +25,6 @@ async function getAppointments(){
 }
 
 export{
-    getPatients,
+    getPatient,
     getAppointments
 }

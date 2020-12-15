@@ -4,7 +4,7 @@ import '../App.css';
 // react-bootstrap components
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
-import { getPatients } from '../services/apiServices';
+import { getPatient } from '../services/apiServices';
 //form component
 import { Button, Select, Input} from './FormComponents';
 import { FormContainer } from './FormContainer';
@@ -22,7 +22,7 @@ class ClientInfo extends React.Component {
   }
 
   componentDidMount(){
-    getPatients()
+    getPatient()
         .then((data) => {
             console.log(data)
 
