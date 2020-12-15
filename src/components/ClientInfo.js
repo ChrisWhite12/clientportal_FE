@@ -5,28 +5,38 @@ import '../App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 
-
-function createClient () {
-
-useEffect(() => {
-  // GET request using fetch inside useEffect React hook
-  const requestOptions = {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
-        "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-        },
-      body: JSON.stringify({ title: 'Client Information' })
-  };
-  fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data));
-
-// empty dependency array means this effect will only run once (like componentDidMount in classes)
-}, []);
-
+const ClientInfo = () => {
+  
+  
+  return (
+    <div>
+      <h1>client name</h1>
+    </div>
 }
+
+
+// function createClient () {
+
+// useEffect(() => {
+//   // GET request using fetch inside useEffect React hook
+//   const requestOptions = {
+//       method: 'GET',
+//       headers: {
+//         Accept: "application/json",
+//         Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
+//         "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
+//         },
+//       body: JSON.stringify({ title: 'Client Information' })
+//   };
+//   fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
+//       .then(response => console.log(response));    
+//   // .then(response => response.json())
+//       .then(data => console.log(data));
+
+// // empty dependency array means this effect will only run once (like componentDidMount in classes)
+// }, []);
+
+// }
 
 // class ClientInfo extends React.Component {
 //   constructor(){
@@ -60,4 +70,4 @@ useEffect(() => {
 //   }
 // }
 
-// export default ClientInfo;
+export default ClientInfo;

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 // react-bootstrap components
-import {Nav} from 'react-bootstrap';
-import { withRouter } from "react-router";
+import { Nav } from 'react-bootstrap';
+import { BrowserRouter, Route } from 'react-router-dom';
+//importing components
+import Dashboard from './Dashboard'
 
-const Side = props => {
+const SideNav = props => {
   //mobile first design - can't see navbar
   // state = {
   //   isOpen: false
@@ -19,16 +21,17 @@ const Side = props => {
   //return this when the toggle is open (mobile first)
   // const { isOpen } = this.state;
   return (
+      <BrowserRouter>
       <div className="text-light bg-dark">
           <Nav defaultActiveKey="/" className="flex-column">
-          <Nav.Link className="border border-light solid rounded p-3" href="/">Dashboard</Nav.Link>
-          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-1">Client Info</Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" Route path="/">Dashboard</Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" href="/ClientInfo">Client Info</Nav.Link>
           <Nav.Link className="border border-light solid rounded p-3" eventKey="link-2">Booked Appointments</Nav.Link>
           <Nav.Link className="border border-light solid rounded p-3" eventKey="link-3">Notifications</Nav.Link>
           </Nav>
       </div>
+      </BrowserRouter>
   );
 }
 
-const SideNav = withRouter(Side);
 export default SideNav;
