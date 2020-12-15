@@ -46,10 +46,22 @@ async function updateUser(userInfo,token){
     }
 }
 
+
 async function resetToken(token){
     const response = await api.get(`/user/reset/${token}`)
     console.log("resetToken from server", response)
     return response
+}
+
+async function readUsers(){
+    try{
+        const response =  await api.get(`/user`)
+        console.log("user back from server", response)
+        return response.data
+    }
+    catch(err){
+        throw(err)
+    }
 }
 
 export {
@@ -58,5 +70,6 @@ export {
     logoutUser,
     forgotPassword,
     resetToken,
-    updateUser
+    updateUser,
+    readUsers
 }

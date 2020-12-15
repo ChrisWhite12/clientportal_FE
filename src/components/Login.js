@@ -27,7 +27,7 @@ const Login = ({history}) => {
                     type: "setLoggedInUser",
                     data: userDetails.email
                 })
-                history.push('/')
+                history.push('/dashboard')
             })
             .catch((err) => {
                 setMessage('Invalid email or password')

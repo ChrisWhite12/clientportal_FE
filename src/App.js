@@ -12,6 +12,7 @@ import stateReducer from './config/stateReducer'
 import { StateContext } from './config/store';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
+import UsersAll from './components/Users';
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/register' component={Register} />
           <Route path='/forgot_password' component={ForgotPassword} />
           <Route path='/reset_password/:token' render={(props) => <ResetPassword {...props} />}/>
+          <Route exact path='/users' component={UsersAll} />
         </Switch>
       </div>
       </Router>
