@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import '../App.css';
 // react-bootstrap components
-import { Nav } from 'react-bootstrap';
-import { BrowserRouter, Route } from 'react-router-dom';
-//importing components
-import Dashboard from './Dashboard'
+import {Nav} from 'react-bootstrap';
+import { withRouter } from "react-router";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from 'react-router-dom'
 
-const SideNav = props => {
+const Side = props => {
+  let match = useRouteMatch()
   //mobile first design - can't see navbar
   // state = {
   //   isOpen: false
@@ -24,10 +31,10 @@ const SideNav = props => {
       <BrowserRouter>
       <div className="text-light bg-dark">
           <Nav defaultActiveKey="/" className="flex-column">
-          <Nav.Link className="border border-light solid rounded p-3" Route path="/">Dashboard</Nav.Link>
-          <Nav.Link className="border border-light solid rounded p-3" href="/ClientInfo">Client Info</Nav.Link>
-          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-2">Booked Appointments</Nav.Link>
-          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-3">Notifications</Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" to={`${match.url}/`}>Dashboard</Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-1" ><Link to={`${match.url}/info`}>Client Info</Link></Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-2" to={`${match.url}/appointments`}>Booked Appointments</Nav.Link>
+          <Nav.Link className="border border-light solid rounded p-3" eventKey="link-3" to={`${match.url}/notifications`}>Notifications</Nav.Link>
           </Nav>
       </div>
       </BrowserRouter>

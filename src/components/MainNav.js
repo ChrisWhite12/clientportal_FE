@@ -159,7 +159,7 @@ const Nav = () => {
                 <button id="read_patients" onClick={readAppointments_btn}>
                     API test - Appointments
                 </button>
-                <Link to="/">
+                <Link to="/dashboard">
                     Dashboard
                 </Link>
 

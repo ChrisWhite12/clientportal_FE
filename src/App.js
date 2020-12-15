@@ -1,5 +1,5 @@
 import './App.css';
-import Nav from './components/Nav';
+import MainNav from './components/MainNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useReducer, useEffect } from 'react'
@@ -30,9 +30,9 @@ function App() {
     <StateContext.Provider value={{store,dispatch}}>
       <Router>  
       <div className="App">
-        <Nav />
+        <MainNav />
         <Switch>
-          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/dashboard' component={Dashboard} />
           <Route path='/sign_in' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/forgot_password' component={ForgotPassword} />
