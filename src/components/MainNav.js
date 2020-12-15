@@ -135,24 +135,6 @@ const Nav = () => {
                 <button id="logout_btn" onClick={onLogout}>
                     Logout
                 </button>
-                <button id="create_profile" onClick={clickProfile}>
-                    Create Profile
-                </button>
-                <button id="create_ticket" onClick={clickTicket}>
-                    Create Ticket
-                </button>
-                <button id="read_profile" onClick={clickProfile_read}>
-                    Read Profile
-                </button>
-                <button id="read_ticket" onClick={clickTicket_read}>
-                    Read Ticket
-                </button>
-                
-            </ul>
-            <ul className="nav-links">
-                <button id="update_profile" onClick={updateProfile_btn}>
-                    Update Profile
-                </button>
                 <button id="read_patients" onClick={readPatients_btn}>
                     API test - Patients
                 </button>
@@ -162,7 +144,10 @@ const Nav = () => {
                 <Link to="/dashboard">
                     Dashboard
                 </Link>
-
+                <Link to="/users">
+                    Users
+                </Link>
+                
             </ul>
         </nav>
     )

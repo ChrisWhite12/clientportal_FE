@@ -29,7 +29,7 @@ const Register = ({history}) => {
                         type: "setLoggedInUser",
                         data: userDetails.email
                     })
-                    history.push('/')
+                    history.push('/dashboard')
                 })
                 .catch((err) => {
                     setMessage('Email already exists')

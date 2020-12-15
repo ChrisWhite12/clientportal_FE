@@ -9,23 +9,32 @@ import { getPatients } from '../services/apiServices';
 import { Button, Select, Input} from './FormComponents';
 import { FormContainer } from './FormContainer';
   
+    
+  
+  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  // }, []);
+class ClientInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: props.user
+    }
+  }
+
+  componentDidMount(){
     getPatients()
         .then((data) => {
             console.log(data)
-
-
 
 
         })
         .catch((err) => {
             console.log(err)
         })
-  
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  // }, []);
-class ClientInfo extends React.Component {
+  }
 
   render() {
+    const {user} = this.state
     return (
       <div>
         <div>
@@ -33,14 +42,14 @@ class ClientInfo extends React.Component {
         </div>
         <form /* onSubmit={this.handleFormSubmit}*/>
           <div className="form-group">
-            <input type="text"> {/* Name of Client */}</input>
-            <input type="text"> {/* Address of Client */}</input> 
-            <input type="text"> {/* Email of Client */}</input> 
-            <input type="number"> {/* Phonenumber of Client */}</input> 
-            <input type="text"> {/* DOB of Client */}</input> 
-            <button type="radio"> {/* Gender Selection */}</button>
-            <input type="text"> {/* Name of Emergency contact of Client */}</input>
-            <button type="submit" className="m-10"> { /*Submit */ }</button>
+            <input type="text"></input>  {/* Name of Client */}
+            <input type="text"></input>  {/* Address of Client */}
+            <input type="text"></input>  {/* Email of Client */}
+            <input type="number"></input>  {/* Phonenumber of Client */}
+            <input type="text"></input>  {/* DOB of Client */}
+            <button type="radio"></button> {/* Gender Selection */}
+            <input type="text"></input> {/* Name of Emergency contact of Client */}
+            <button type="submit" className="m-10"></button> { /*Submit */ }
             <button type="submit"> Clear the form</button>
           </div>
         </form> 
