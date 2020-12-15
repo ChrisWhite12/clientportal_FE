@@ -5,79 +5,57 @@ import '../App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 import { getPatients } from '../services/apiServices';
-
-const ClientInfo = () => {
-
-  useEffect(() => {
-    // GET request using fetch inside useEffect React hook
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: {
-    //       Accept: "application/json",
-    //       Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
-    //       "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-    //       },
-    // };
-    // fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
+//form component
+import { Button, Select, Input} from './FormComponents';
+import { FormContainer } from './FormContainer';
   
+    
+  
+  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  // }, []);
+class ClientInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: props.user
+    }
+  }
+
+  componentDidMount(){
     getPatients()
         .then((data) => {
             console.log(data)
-
-
 
 
         })
         .catch((err) => {
             console.log(err)
         })
+  }
 
-        // .then(response => response.json())
-        // .then(data => console.log(data));
-  
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
-
-  return (
-    <div>
-      <h1>ClientInfo</h1>
-    </div>
-  )
+  render() {
+    const {user} = this.state
+    return (
+      <div>
+        <div>
+          <h1>ClientInfo</h1>
+        </div>
+        <form /* onSubmit={this.handleFormSubmit}*/>
+          <div className="form-group">
+            <input type="text"></input>  {/* Name of Client */}
+            <input type="text"></input>  {/* Address of Client */}
+            <input type="text"></input>  {/* Email of Client */}
+            <input type="number"></input>  {/* Phonenumber of Client */}
+            <input type="text"></input>  {/* DOB of Client */}
+            <button type="radio"></button> {/* Gender Selection */}
+            <input type="text"></input> {/* Name of Emergency contact of Client */}
+            <button type="submit" className="m-10"></button> { /*Submit */ }
+            <button type="submit"> Clear the form</button>
+          </div>
+        </form> 
+      </div>
+    )
+  }
 }
 
 export default ClientInfo
-
-
-// class ClientInfo extends React.Component {
-//   constructor(){
-//     super();
-//     this.state = {
-//       name: {title: '', first: '', last: ''},
-//     };
-//   }
-
-//   getUser() {
-//     fetch()
-//     .then(response => {
-//       if(response.ok) return response.json();
-//       throw new Error('Request failed.');
-//     })
-//     .then(data => {
-//       this.setState({name: data.results[0].name,
-//         image: data.results[0].picture.medium});
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-//   }
-
-//   render() {
-//     return (
-// 	<div>
-//           <h1>{`${this.state.name.title} ${this.state.name.first} ${this.state.name.last}`}</h1>
-// 	</div>
-//     );
-//   }
-// }
-
-// export default ClientInfo;
