@@ -4,29 +4,49 @@ import '../App.css';
 // react-bootstrap components
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
+import { getPatients } from '../services/apiServices';
+
+const ClientInfo = () => {
+
+  useEffect(() => {
+    // GET request using fetch inside useEffect React hook
+    // const requestOptions = {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: "application/json",
+    //       Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
+    //       "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
+    //       },
+    // };
+    // fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
+  
+    getPatients()
+        .then((data) => {
+            console.log(data)
 
 
-function createClient () {
 
-useEffect(() => {
-  // GET request using fetch inside useEffect React hook
-  const requestOptions = {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
-        "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-        },
-      body: JSON.stringify({ title: 'Client Information' })
-  };
-  fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data));
 
-// empty dependency array means this effect will only run once (like componentDidMount in classes)
-}, []);
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 
+        // .then(response => response.json())
+        // .then(data => console.log(data));
+  
+  // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+  return (
+    <div>
+      <h1>ClientInfo</h1>
+    </div>
+  )
 }
+
+export default ClientInfo
+
 
 // class ClientInfo extends React.Component {
 //   constructor(){
