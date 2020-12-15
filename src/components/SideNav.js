@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 // react-bootstrap components
 import {Nav} from 'react-bootstrap';
@@ -28,7 +28,6 @@ const Side = props => {
   //return this when the toggle is open (mobile first)
   // const { isOpen } = this.state;
   return (
-      <BrowserRouter>
       <div className="text-light bg-dark">
           <Nav defaultActiveKey="/" className="flex-column">
           <Nav.Link className="border border-light solid rounded p-3" to={`${match.url}/`}>Dashboard</Nav.Link>
@@ -37,8 +36,8 @@ const Side = props => {
           <Nav.Link className="border border-light solid rounded p-3" eventKey="link-3" to={`${match.url}/notifications`}>Notifications</Nav.Link>
           </Nav>
       </div>
-      </BrowserRouter>
   );
 }
 
+const SideNav = withRouter(Side);
 export default SideNav;

@@ -5,20 +5,6 @@ import '../App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import SideNav from "../components/SideNav.js";
 import { getPatients } from '../services/apiServices';
-
-const ClientInfo = () => {
-
-  useEffect(() => {
-    // GET request using fetch inside useEffect React hook
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: {
-    //       Accept: "application/json",
-    //       Authorization: "Basic TVMwMU1URTNNRFE1TXpBek1ESTFOalE1TXpBdGNUWnVlSFp0YWxKMk56Um9NVmRLYmtkS1VrOWtUSFZ0ZDNZMmQzVXpiRmMtYXUyOg==",
-    //       "User-Agent": "Caity McC (ferguselchancho@gmail.com)"
-    //       },
-    // };
-    // fetch('https://api.au2.cliniko.com/v1/patients', requestOptions)
   
     getPatients()
         .then((data) => {
@@ -31,18 +17,62 @@ const ClientInfo = () => {
         .catch((err) => {
             console.log(err)
         })
-
-        // .then(response => response.json())
-        // .then(data => console.log(data));
   
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
+  // }, []);
 
-  return (
-    <div>
-      <h1>ClientInfo</h1>
-    </div>
-  )
+class ClientInfo extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      patient: {
+        name: '',
+        address_1: '',
+        email: '',
+        paitent_phone_numbers: '',
+        date_of_birth: '',
+        gender: '',
+        emergency_contact: '',
+      },
+
+      genderOptions: ['Male', 'Female', 'Other']
+    
+    }
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
+  };
+
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   alert('You have submitted the form.')
+  // }
+  // handleClearForm() {
+
+  // }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <h1>ClientInfo</h1>
+        </div>
+        <form /* onSubmit={this.handleFormSubmit}*/>
+          <div className="form-group">
+            <input type="text"> {/* Name of Client */}</input>
+            <input type="text"> {/* Address of Client */}</input> 
+            <input type="text"> {/* Email of Client */}</input> 
+            <input type="number"> {/* Phonenumber of Client */}</input> 
+            <input type="text"> {/* DOB of Client */}</input> 
+            <button type="radio"> {/* Gender Selection */}</button>
+            <input type="text"> {/* Name of Emergency contact of Client */}</input>
+            <button type="submit"> { /*Submit */ }</button>
+            <button type="submit"> Clear the form</button>
+          </div>
+        </form> 
+      </div>
+    )
+  }
 }
 
 export default ClientInfo
@@ -80,4 +110,4 @@ export default ClientInfo
 //   }
 // }
 
-export default ClientInfo;
+// export default ClientInfo;
