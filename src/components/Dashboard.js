@@ -3,10 +3,7 @@ import {useGlobalState} from '../config/store';
 import '../App.css';
 // react-bootstrap components
 import {Container, Row, Col, Nav} from 'react-bootstrap';
-import SideNav from "../components/SideNav.js";
-import Test from "../components/api.js"
-import { getProfile } from '../services/profileServices';
-import { getPatients } from '../services/apiServices';
+import { getPatient } from '../services/apiServices';
 import ClientInfo from './ClientInfo';
 import Home from './Home';
 
@@ -24,11 +21,25 @@ import Notifications from './Notifications';
     
 const Dashboard = () => {
 
-    const {store} = useGlobalState()
-    const {loggedInUser} = store
+    const {dispatch} = useGlobalState()
 
     const dummy_appointment = {date: "1/1/21", time: "10:00am", location: "1 Main St"}
     let {path,url} = useRouteMatch()
+
+    useEffect(() => {
+        console.log("getting patient info")
+        getPatient()
+        .then((data) => {
+            console.log(data)
+            dispatch({
+                type: "setPatientInfo",
+                data: data
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    },[])
 
     return (
         <div className="main_sec">
