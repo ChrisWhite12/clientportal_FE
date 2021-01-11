@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
 import {logoutUser} from '../services/authServices'
-
+import { getPatient } from '../services/apiServices';
 const Nav = () => {
 
     const {dispatch,store} = useGlobalState()
@@ -28,6 +28,21 @@ const Nav = () => {
         // })
     }
 
+    const handleApiRead = () => {
+        console.log("getting patient info")
+        getPatient()
+        .then((data) => {
+            console.log(data)
+            dispatch({
+                type: "setPatientInfo",
+                data: data
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
 
     return (
         <nav>
@@ -40,6 +55,9 @@ const Nav = () => {
                 </Link>
                 <button id="logout_btn" onClick={onLogout}>
                     Logout
+                </button>
+                <button id="api_btn" onClick={handleApiRead}>
+                    Api Test
                 </button>
                 <Link to="/dashboard">
                     Dashboard

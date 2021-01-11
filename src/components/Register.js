@@ -32,7 +32,8 @@ const Register = ({history}) => {
                     history.push('/dashboard')
                 })
                 .catch((err) => {
-                    setMessage('Email already exists')
+                    console.log(err.response.data.error)
+                    setMessage(err.response.data.error)
                 })
         }
         else{

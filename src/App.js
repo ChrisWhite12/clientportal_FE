@@ -2,7 +2,7 @@ import './App.css';
 import MainNav from './components/MainNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 // import Dashboard from './views/Dashboard';
 import Dashboard from './components/Dashboard';
