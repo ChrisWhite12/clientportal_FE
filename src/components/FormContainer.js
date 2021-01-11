@@ -1,5 +1,6 @@
 import React, {Component} from 'react';  
 import { Button, Select, Input} from './FormComponents';
+import api from '../config/api';
 
 class FormContainer extends Component {  
     constructor(props) {
@@ -7,42 +8,34 @@ class FormContainer extends Component {
   
       this.state = {
         patient: {
-          name: '',
+          first_name: '',
+          last_name: '',
           address_1: '',
-          email: '',
-          paitent_phone_numbers: '',
+          // paitent_phone_numbers: '',
+          //   //this is what the JSON looks like...how do i do the syntax?
+          //   // "patient_phone_numbers": [
+          //   //   {
+          //   //     "phone_type": "Mobile",
+          //   //     "number": "61444444444"
+          //   //   },
           date_of_birth: '',
           gender: '',
           emergency_contact: '',
         },
   
         genderOptions: ['Male', 'Female', 'Others'],  
+
       }
-      this.handleDate_of_Birth = this.handleDate_of_Birth.bind(this);
-      this.handleName = this.handleName.bind(this);
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
-      this.handleClearForm = this.handleClearForm.bind(this);
+      this.handleCancelForm = this.handleCancelForm.bind(this);
+      // this.handleDate_of_Birth = this.handleDate_of_Birth.bind(this);
+      // this.handleFirstName = this.handleFirstName.bind(this);
+      // this.handleLastName = this.handleLastName.bind(this);
       this.handleInput = this.handleInput.bind(this);
     }
-  
-    /* This lifecycle hook gets executed when the component mounts */
     
-    handleName(e) {
-     let value = e.target.value;
-     this.setState( prevState => ({ patient : 
-          {...prevState.patient, name: value
-          }
-        }), () => console.log(this.state.patient))
-    }
-  
-    handleDate_of_Birth(e) {
-         let value = e.target.value;
-     this.setState( prevState => ({ patient : 
-          {...prevState.patient, date_of_birth: value
-          }
-        }), () => console.log(this.state.newUser))
-    }
-  
+    //generic variation of the below code - used in place of each individual handleEvent
+    
     handleInput(e) {
          let value = e.target.value;
          let name = e.target.name;
@@ -51,13 +44,47 @@ class FormContainer extends Component {
           }
         }), () => console.log(this.state.patient))
     }
+
+    // handleFirstName(e) {
+    //   let value = e.target.value;
+    //   this.setState( prevState => ({ patient : 
+    //       {...prevState.patient, first_name: value
+    //       }
+    //     }), () => console.log(this.state.patient.first_name))
+    // }
+
+    // handleLastName(e) {
+    //   let value = e.target.value;
+    //   this.setState( prevState => ({ patient : 
+    //       {...prevState.patient, last_name: value
+    //       }
+    //     }), () => console.log(this.state.patient.last_name))
+    // }
   
+    // handleDate_of_Birth(e) {
+    //   let value = e.target.value;
+    //   this.setState( prevState => ({ patient : 
+    //       {...prevState.patient, date_of_birth: value
+    //       }
+    //     }), () => console.log(this.state.patient.date_of_birth))
+    // }
+
+    // handleGender(e) {
+    //   let value = e.target.value;
+    //   this.setState( prevState => ({ patient : 
+    //       {...prevState.patient, gender: value
+    //       }
+    //     }), () => console.log(this.state.patient.gender))
+    // }
+  
+    /* This lifecycle hook gets executed when the component mounts */
+    
     handleFormSubmit(e) {
       e.preventDefault();
       let userData = this.state.patient;
   
-      fetch('http://example.com',{
-          method: "POST",
+      fetch('https://api.au1.cliniko.com/v1/patients/{:id}',{
+          method: "PUT",
           body: JSON.stringify(userData),
           headers: {
             'Accept': 'application/json',
@@ -70,67 +97,87 @@ class FormContainer extends Component {
       })
     }   
   
-    handleClearForm(e) {
+    handleCancelForm(e) {
     
-        e.preventDefault();
+        e.preventDefault();//prevents page from being refresehd on form submission
         this.setState({ 
-          newUser: {
-            name: '',
-            age: '',
+          patient: {
+            first_name: '',
+            last_name: '',
+            address_1: '',
+            date_of_birth: '',
             gender: '',
-            skills: [],
-            about: ''
+            emergency_contact: '',
           },
         })
     }
-  
+
     render() {
       return (
-      
-          <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+        <form className="container-fluid" onSubmit={this.handleFormSubmit}>
          
-              <Input inputType={'text'}
-                     title= {'Full Name'} 
-                     name= {'name'}
-                     value={this.state.patient.name} 
-                     placeholder = {'Enter the Client\'s name'}
-                     handleChange = {this.handleInput}
-                     
-                     /> {/* Name of the user */}
-          
-            <Input inputType={'date'} 
-                  name={'date_of_birth'}
-                   title= {'Date of Birth'} 
-                   value={this.state.patient.date_of_birth} 
-                  placeholder = {'Enter the Client\'s Date of Birth'}
-                   handleChange={this.handleDate_of_Birth} /> {/* Age */} 
-  
-  
-            <Select title={'Gender'}
+          <Input inputType={'text'}
+                    title= {'First Name'} 
+                    name= {'first_name'}
+                    value={this.state.patient.first_name} 
+                    placeholder = {'Enter the Client\'s name'}
+                    handleChange = {this.handleInput}
+                    /> 
+
+          <Input inputType={'text'}
+                    title= {'Last Name'} 
+                    name= {'last_name'}
+                    value={this.state.patient.last_name} 
+                    placeholder = {'Enter the Client\'s Last name(s)'}
+                    handleChange = {this.handleInput}
+                    /> 
+        
+          <Input inputType={'date'} 
+                    name={'date_of_birth'}
+                    title= {'Date of Birth'} 
+                    value={this.state.patient.date_of_birth} 
+                    placeholder = {'Enter the Client\'s Date of Birth'}
+                    handleChange = {this.handleInput}
+                    /> 
+
+          <Select inputType={'text'}
+                    title={'Address'}
+                    name={'address_1'}
+                    value = {this.state.patient.address_1}
+                    placeholder = {'Enter Clients\' residential address'}
+                    handleChange = {this.handleInput}
+                    />
+
+          <Select inputType={'text'}
+                    title={'Emergency Contact'}
+                    name={'emergency_contact'}
+                    value = {this.state.patient.emergency_contact}
+                    placeholder = {'Enter the name and Phone number of the Client\'s Emergency Contact'}
+                    handleChange = {this.handleInput}
+                    />
+
+          <Select title={'Gender'}
                     name={'gender'}
                     options = {this.state.genderOptions} 
                     value = {this.state.patient.gender}
                     placeholder = {'Select Gender'}
                     handleChange = {this.handleInput}
                     />
-            
-            <Button 
-                action = {this.handleFormSubmit}
-                type = {'primary'} 
-                title = {'Submit'} 
-            /> { /*Submit */ }
-            
-            <Button 
-              action = {this.handleClearForm}
-              type = {'secondary'}
-              title = {'Clear'}
-            /> {/* Clear the form */}
-            
-          </form>
-    
+          
+          <Button 
+                    action = {this.handleFormSubmit}
+                    type = {'primary'} 
+                    title = {'Submit'} 
+                    /> 
+          
+          <Button 
+                    action = {this.handleCancelForm}
+                    type = {'secondary'}
+                    title = {'Cancel'}
+                    /> 
+        </form>
       );
     }
-  
-}  
+}
 
 export default FormContainer;
