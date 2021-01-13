@@ -3,13 +3,13 @@ import React, {Component} from 'react';
 const Button = (props) => {
     console.log(props.style);
     return(
-    <button 
-      style= {props.style} 
-      className = {props.type=='primary'? 'btn btn-primary' : 'btn btn-secondary'}
-      onClick= {props.action} > 
-      {props.title} 
-    </button>)
-  }
+      <button 
+        style= {props.style} 
+        className = {props.type=='primary'? 'btn btn-primary' : 'btn btn-secondary'}
+        onClick= {props.action} > 
+        {props.title} 
+      </button>)
+}
 
   const Input = (props) => {
     return (  
@@ -38,14 +38,14 @@ const Button = (props) => {
             onChange={props.handleChange}
             className="form-control">
             <option value="" disabled>{props.placeholder}</option>
-            {props.options.map(option => {
+            {/* {props.options.map(option => {
               return (
                 <option
                   key={option}
                   value={option}
                   label={option}>{option}</option>
               );
-            })}
+            })} */}
           </select>
     </div>)
   }
