@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from 'react'
-import {createTicket, getTicket} from '../services/ticketServices'
+import {createTicket, getTicket, updateTicket, deleteTicket} from '../services/ticketServices'
 
 const Notifications = () => {
 
@@ -34,13 +34,38 @@ const Notifications = () => {
         setCount(count + 1)
     }
 
+    const handleAccept = (event) => {
+        let ticketUpdate = tickets.filter(el => el._id == event.target.value)[0]
+        ticketUpdate.status = 'accepted'
+        updateTicket(ticketUpdate)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
+
+    const handleReject = (event) => {
+        let ticketUpdate = tickets.filter(el => el._id == event.target.value)[0]
+        ticketUpdate.status = 'rejected'
+        updateTicket(ticketUpdate)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
+
+    const handleDelete = (event) => {
+        deleteTicket(event.target.value)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
+
     return (
         <div>
             <h1>Notifications</h1>
             <ul>
             {tickets.map((ticket) => {
                 return <li key={ticket._id}><p>Ticket: {ticket._id}</p><p>appId:{ticket.appId}</p><p>appDate: {ticket.appDate}</p> 
-                <p>status: {ticket.status}</p><p>userId: {ticket.userId}</p><p>pracId:{ticket.practitionerId}</p><button>Reject</button><button>Accept</button></li>
+                <p>status: {ticket.status}</p><p>userId: {ticket.userId}</p><p>pracId:{ticket.practitionerId}</p>
+                <button onClick={(event) => handleReject(event)} value={ticket._id}>Reject</button>
+                <button onClick={(event) => handleAccept(event)} value={ticket._id}>Accept</button>
+                <button onClick={(event) => handleDelete(event)} value={ticket._id}>Delete</button></li>
             })}
             </ul>
             <button id="create_ticket" onClick={clickTicket}>

@@ -24,9 +24,9 @@ async function createTicket(userInfo){
     }
 }
 
-async function updateTicket(userInfo){
+async function updateTicket(ticInfo){
     try{
-        const response =  await api.put(`/ticket/${userInfo._id}`, userInfo)
+        const response =  await api.put(`/ticket/${ticInfo._id}`, ticInfo)
         console.log("update ticket from server", response)
         return response.data
     }

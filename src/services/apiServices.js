@@ -12,6 +12,18 @@ async function getPatient(){
     }
 }
 
+async function updatePatient(patientInfo){
+    try{
+        const response =  await api.put(`/api/patient`, patientInfo)
+        console.log("updatePatients from server", response)
+        return response.data
+    }
+    catch(error){
+        console.log("updatePatients from server - err")
+        throw(error)
+    }
+}
+
 async function getAppointments(){
     try{
         const response =  await api.get(`/api/appointments`)
@@ -26,5 +38,6 @@ async function getAppointments(){
 
 export{
     getPatient,
-    getAppointments
+    getAppointments,
+    updatePatient
 }

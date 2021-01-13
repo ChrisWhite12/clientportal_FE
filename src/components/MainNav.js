@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
 import {logoutUser} from '../services/authServices'
-import { getPatient } from '../services/apiServices';
+import { getPatient, updatePatient } from '../services/apiServices';
 const Nav = () => {
 
     const {dispatch,store} = useGlobalState()
@@ -43,6 +43,20 @@ const Nav = () => {
         })
     }
 
+    const handleUpdatePatient = () => {
+        console.log("updating patient info")
+        let patientInfo = {
+            "address_1": '1 test st',
+            "address_2": "blah"
+        }
+        updatePatient(patientInfo)
+        .then((data) => {
+            console.log(data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     return (
         <nav>
@@ -58,6 +72,9 @@ const Nav = () => {
                 </button>
                 <button id="api_btn" onClick={handleApiRead}>
                     Api Test
+                </button>
+                <button id="update_patient_btn" onClick={handleUpdatePatient}>
+                    Update patient
                 </button>
                 <Link to="/dashboard">
                     Dashboard

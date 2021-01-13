@@ -22,7 +22,14 @@ function App() {
   
   // initial state for state reducer
   const initialState = {
-    loggedInUser: null
+    loggedInUser: null,
+    patientInfo: {
+      appointments: [],
+      patient: {
+        appointment_start: '',
+        appointment_end: ''
+      }
+    }
   }
 
   const [store, dispatch] = useReducer(stateReducer,initialState)
