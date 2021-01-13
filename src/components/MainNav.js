@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
-import { getAppointments, getPatients } from '../services/apiServices'
 import {logoutUser} from '../services/authServices'
-import {createProfile, getProfile, updateProfile } from '../services/profileServices'
-import { createTicket, getTicket } from '../services/ticketServices'
-
+import { getPatient, updatePatient } from '../services/apiServices';
 const Nav = () => {
 
     const {dispatch,store} = useGlobalState()
@@ -31,96 +28,34 @@ const Nav = () => {
         // })
     }
 
-    const clickProfile = () => {
-        console.log('creating profile')
-        createProfile({
-            firstName: "chris",
-            lastName: "white",
-            contact: "123456",
-            address: "1 First St"
+    const handleApiRead = () => {
+        console.log("getting patient info")
+        getPatient()
+        .then((data) => {
+            console.log(data)
+            dispatch({
+                type: "setPatientInfo",
+                data: data
+            })
         })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const clickTicket = () => {
-        console.log('creating ticket')
-        createTicket({
-            appId: "1",
-            appDate: "1/1/21",
-            status: "pending",
-            notified: false,
+        .catch((err) => {
+            console.log(err)
         })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
     }
 
-    const clickProfile_read = () => {
-        console.log('reading profile')
-        getProfile()
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const clickTicket_read = () => {
-        console.log('reading ticket')
-        getTicket()
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const updateProfile_btn = () => {
-        console.log('updating profile')
-        
-        updateProfile({
-            contact: "111111111"
+    const handleUpdatePatient = () => {
+        console.log("updating patient info")
+        let patientInfo = {
+            "address_1": '1 test st',
+            "address_2": "blah"
+        }
+        updatePatient(patientInfo)
+        .then((data) => {
+            console.log(data)
         })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const readPatients_btn = () => {
-        console.log('reading patients')
-        
-        getPatients()
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
-    const readAppointments_btn = () => {
-        console.log('reading appointments')
-        
-        getAppointments()
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     return (
@@ -135,11 +70,11 @@ const Nav = () => {
                 <button id="logout_btn" onClick={onLogout}>
                     Logout
                 </button>
-                <button id="read_patients" onClick={readPatients_btn}>
-                    API test - Patients
+                <button id="api_btn" onClick={handleApiRead}>
+                    Api Test
                 </button>
-                <button id="read_patients" onClick={readAppointments_btn}>
-                    API test - Appointments
+                <button id="update_patient_btn" onClick={handleUpdatePatient}>
+                    Update patient
                 </button>
                 <Link to="/dashboard">
                     Dashboard
