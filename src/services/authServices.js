@@ -2,7 +2,6 @@ import api from '../config/api'
 
 async function registerUser(userInfo){
     try{
-        console.log("userinfo", userInfo)
         const response =  await api.post("/user/register", userInfo)
         console.log("register from server", response)
         return response.data
