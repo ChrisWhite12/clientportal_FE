@@ -1,19 +1,19 @@
-import React, { Component, useState, useEffect } from 'react';
-import { useGlobalState } from '../config/store';
+import React, { Component } from 'react';
+// import { useGlobalState } from '../config/store';
 import '../App.css';
 // react-bootstrap components
-import {Container, Row, Col} from 'react-bootstrap';
-import SideNav from "../components/SideNav.js";
+// import {Container, Row, Col} from 'react-bootstrap';
+// import SideNav from "../components/SideNav.js";
 import { getPatient } from '../services/apiServices';
 //form component
-import { Button, Select, Input} from './FormComponents';
-import { FormContainer } from './FormContainer';
+// import { Button, Select, Input} from './FormComponents';
+// import { FormContainer } from './FormContainer';
   
     
   
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
   // }, []);
-class ClientInfo extends React.Component {
+class ClientInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,6 @@ class ClientInfo extends React.Component {
   }
 
   render() {
-    const {user} = this.state
     return (
       <div>
         <div>

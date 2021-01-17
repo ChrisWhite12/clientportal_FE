@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 import {useGlobalState} from '../config/store';
 
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row} from 'react-bootstrap';
+//Col
 
 const Home = () => {
 

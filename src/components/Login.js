@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import {useGlobalState} from "../config/store"
 import {loginUser} from "../services/authServices"
 import {Link} from 'react-router-dom'
@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()
     const [message,setMessage] = useState('')
-    const {store,dispatch} = useGlobalState()
+    const {dispatch} = useGlobalState()
 
     function handleChange(event){
         const name = event.target.name

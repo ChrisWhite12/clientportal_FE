@@ -4,12 +4,8 @@ import '../App.css';
 import {Nav} from 'react-bootstrap';
 import { withRouter } from "react-router";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  useRouteMatch,
-  useParams
+  useRouteMatch
 } from 'react-router-dom'
 
 const Side = props => {

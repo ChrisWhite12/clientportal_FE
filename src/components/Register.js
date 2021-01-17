@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import {useGlobalState} from "../config/store"
 import {registerUser} from "../services/authServices"
 
@@ -9,7 +9,7 @@ const Register = ({history}) => {
         password_confirm: ''
     })
     const [message,setMessage] = useState('')
-    const {store, dispatch} = useGlobalState()
+    const {dispatch} = useGlobalState()
 
     function handleChange(event){
         const name = event.target.name

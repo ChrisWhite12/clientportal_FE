@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import { useGlobalState } from '../config/store'
 import {logoutUser} from '../services/authServices'
 import { getPatient, updatePatient } from '../services/apiServices';
 const Nav = () => {
 
-    const {dispatch,store} = useGlobalState()
+    const {dispatch} = useGlobalState()
     const history = useHistory()
 
     const onLogout = () => {

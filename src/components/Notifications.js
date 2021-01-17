@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {createTicket, getTicket, updateTicket, deleteTicket} from '../services/ticketServices'
 
 const Notifications = () => {
@@ -35,7 +35,7 @@ const Notifications = () => {
     }
 
     const handleAccept = (event) => {
-        let ticketUpdate = tickets.filter(el => el._id == event.target.value)[0]
+        let ticketUpdate = tickets.filter(el => el._id === event.target.value)[0]
         ticketUpdate.status = 'accepted'
         updateTicket(ticketUpdate)
         .then((res) => console.log(res))
@@ -43,7 +43,7 @@ const Notifications = () => {
     }
 
     const handleReject = (event) => {
-        let ticketUpdate = tickets.filter(el => el._id == event.target.value)[0]
+        let ticketUpdate = tickets.filter(el => el._id === event.target.value)[0]
         ticketUpdate.status = 'rejected'
         updateTicket(ticketUpdate)
         .then((res) => console.log(res))

@@ -1,11 +1,10 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useGlobalState} from "../config/store"
-import {Link} from 'react-router-dom'
 import { resetToken, updateUser } from '../services/authServices'
 
 const ResetPassword = ({history, match}) => {
 
-    const {store, dispatch} = useGlobalState()
+    const {dispatch} = useGlobalState()
 
     const [userDetails, setUserDetails] = useState({
         password: '',

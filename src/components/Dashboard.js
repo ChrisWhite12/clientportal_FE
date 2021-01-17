@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {useGlobalState} from '../config/store';
 import '../App.css';
 // react-bootstrap components
@@ -12,8 +12,7 @@ import {
     Switch,
     Route,
     Link,
-    useRouteMatch,
-    useParams
+    useRouteMatch
 } from 'react-router-dom'
 import Appointments from './Appointments';
 import Notifications from './Notifications';
@@ -23,7 +22,6 @@ const Dashboard = () => {
 
     const {dispatch} = useGlobalState()
 
-    const dummy_appointment = {date: "1/1/21", time: "10:00am", location: "1 Main St"}
     let {path,url} = useRouteMatch()
 
     useEffect(() => {
