@@ -1,3 +1,42 @@
+// import React, { Component } from 'react';
+// import { StateContext } from '../config/store';
+
+// class Appointments extends Component{
+//     static contextType = StateContext 
+
+//     constructor(props){
+//         super(props)
+//         this.state = {
+//             patientInfo: {},
+//             appointInfo: []
+//         }
+//     }
+
+//     componentDidMount() {
+//         // const patientInfo = this.context.store.patientInfo.patient
+//         const appointInfo = this.context.store.patientInfo.appointments
+//         // console.log(patientInfo)
+//         console.log(appointInfo)
+//         this.setState({appointInfo: appointInfo.map((el) => {
+//             return <p key={`key_${el.id}`}>{el.id}
+//                     {el.starts_at}{el.ends_at}</p>
+//         })})
+//     }
+
+//     render () {
+//         const {appointInfo} = this.state
+//         return (
+//             <div>
+//                 <h1>Appointments</h1>
+//                 {appointInfo}
+//             </div>
+    
+    
+    
+// }
+
+// export default Appointments;
+
 import React, {Component} from 'react'
 
 import { StateContext } from '../config/store';
@@ -19,8 +58,20 @@ class Appointments extends Component{
         // console.log(patientInfo)
         console.log(appointInfo)
         this.setState({appointInfo: appointInfo.map((el) => {
-            return <p key={`key_${el.id}`}>{el.id}
-                    {el.starts_at}</p>
+            return <p key={`key_${el.id}`}>
+                        <table>
+                            <tr>
+                                <th>Appointment ID</th>
+                                <th>Appointment Start Date and Time</th>
+                                <th>Appointment Start Date and Time</th>
+                            </tr>
+                            <tr>
+                                <td>{el.id}</td>
+                                <td>{el.starts_at}</td>
+                                <td>{el.ends_at}</td>
+                            </tr>
+                        </table>
+                    </p>
         })})
     }
 
@@ -30,7 +81,6 @@ class Appointments extends Component{
         return (
             <div>
                 <h1>Appointments</h1>
-
                 {appointInfo}
             </div>
         )
@@ -38,131 +88,3 @@ class Appointments extends Component{
 }
 
 export default Appointments
-
-// import React from 'react'
-// import styled from 'styled-components'
-// import { useTable } from 'react-table'
-
-// import makeData from './makeData'
-
-// const Styles = styled.div`
-//   padding: 1rem;
-
-//   table {
-//     border-spacing: 0;
-//     border: 1px solid black;
-
-//     tr {
-//       :last-child {
-//         td {
-//           border-bottom: 0;
-//         }
-//       }
-//     }
-
-//     th,
-//     td {
-//       margin: 0;
-//       padding: 0.5rem;
-//       border-bottom: 1px solid black;
-//       border-right: 1px solid black;
-
-//       :last-child {
-//         border-right: 0;
-//       }
-//     }
-//   }
-// `
-
-// function Table({ columns, data }) {
-//   // Use the state and functions returned from useTable to build your UI
-//   const {
-//     getTableProps,
-//     getTableBodyProps,
-//     headerGroups,
-//     rows,
-//     prepareRow,
-//   } = useTable({
-//     columns,
-//     data,
-//   })
-
-//   // Render the UI for your table
-//   return (
-//     <table {...getTableProps()}>
-//       <thead>
-//         {headerGroups.map(headerGroup => (
-//           <tr {...headerGroup.getHeaderGroupProps()}>
-//             {headerGroup.headers.map(column => (
-//               <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-//             ))}
-//           </tr>
-//         ))}
-//       </thead>
-//       <tbody {...getTableBodyProps()}>
-//         {rows.map((row, i) => {
-//           prepareRow(row)
-//           return (
-//             <tr {...row.getRowProps()}>
-//               {row.cells.map(cell => {
-//                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-//               })}
-//             </tr>
-//           )
-//         })}
-//       </tbody>
-//     </table>
-//   )
-// }
-
-// function App() {
-//   const columns = React.useMemo(
-//     () => [
-//       {
-//         Header: 'Name',
-//         columns: [
-//           {
-//             Header: 'First Name',
-//             accessor: 'firstName',
-//           },
-//           {
-//             Header: 'Last Name',
-//             accessor: 'lastName',
-//           },
-//         ],
-//       },
-//       {
-//         Header: 'Info',
-//         columns: [
-//           {
-//             Header: 'Age',
-//             accessor: 'age',
-//           },
-//           {
-//             Header: 'Visits',
-//             accessor: 'visits',
-//           },
-//           {
-//             Header: 'Status',
-//             accessor: 'status',
-//           },
-//           {
-//             Header: 'Profile Progress',
-//             accessor: 'progress',
-//           },
-//         ],
-//       },
-//     ],
-//     []
-//   )
-
-//   const data = React.useMemo(() => makeData(20), [])
-
-//   return (
-//     <Styles>
-//       <Table columns={columns} data={data} />
-//     </Styles>
-//   )
-// }
-
-// export default App
