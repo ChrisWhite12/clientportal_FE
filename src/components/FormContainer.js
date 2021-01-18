@@ -6,6 +6,15 @@ class FormContainer extends Component {
     constructor(props) {
       super(props);
   
+    //   useEffect(() => {
+    //         // get user and set form fields
+    //         userService.getById(id).then(user => {
+    //             const fields = ['title', 'firstName', 'lastName', 'email', 'role'];
+    //             fields.forEach(field => setValue(field, user[field]));
+    //             setUser(user);
+    //         });
+    //    }, []);
+
       this.state = {
         patient: {
           first_name: '',
@@ -140,18 +149,18 @@ class FormContainer extends Component {
                     handleChange = {this.handleInput}
                     /> 
 
-          <Select inputType={'text'}
-                    title={'Address'}
-                    name={'address_1'}
-                    value = {this.state.patient.address_1}
+          <Input inputType={'text'}
+                    title= {'Address'} 
+                    name= {'address_1'}
+                    value={this.state.patient.address_1} 
                     placeholder = {'Enter Clients\' residential address'}
                     handleChange = {this.handleInput}
-                    />
+                    /> 
 
-          <Select inputType={'text'}
-                    title={'Emergency Contact'}
-                    name={'emergency_contact'}
-                    value = {this.state.patient.emergency_contact}
+          <Input inputType={'text'}
+                    title= {'Emergency Contact'} 
+                    name= {'emergency_contact'}
+                    value={this.state.patient.emergency_contact} 
                     placeholder = {'Enter the name and Phone number of the Client\'s Emergency Contact'}
                     handleChange = {this.handleInput}
                     />

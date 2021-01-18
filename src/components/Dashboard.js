@@ -5,6 +5,7 @@ import '../App.css';
 import {Container, Row, Col, Nav} from 'react-bootstrap';
 import { getPatient } from '../services/apiServices';
 import ClientInfo from './ClientInfo';
+import UserInfo from './UserInfo';
 import Home from './Home';
 
 import {
@@ -59,9 +60,10 @@ const Dashboard = () => {
                     <Col className="col-8 text-light bg-dark">
                         <Switch>
                             <Route exact path={`${path}`} component={Home}/>
-                            <Route path={`${path}/info`} component={ClientInfo}/>
+                            <Route exact path={`${path}/info/edit`} component={ClientInfo}/>
                             <Route path={`${path}/appointments`} component={Appointments}/>
                             <Route path={`${path}/notifications`} component={Notifications}/>
+                            <Route exact path={`${path}/info`} component={UserInfo}/>
                         </Switch>
                     </Col>
 

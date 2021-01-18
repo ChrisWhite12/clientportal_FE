@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
-import SideNav from "../components/SideNav.js";
 import { getPatient } from '../services/apiServices';
 //form component
 import { Button, Select, Input} from './FormComponents';
-import { FormContainer } from './FormContainer';
+import FormContainer from './FormContainer';
     
   
   // empty dependency array means this effect will only run once (like componentDidMount in classes)
