@@ -137,6 +137,14 @@ class FormContainer extends Component {
                     placeholder = {'Enter the Client\'s Last name(s)'}
                     handleChange = {this.handleInput}
                     /> 
+
+          <Input inputType={'text'}
+                    title= {'Address'} 
+                    name= {'address_1'}
+                    value={this.state.patient.address_1} 
+                    placeholder = {'Enter Clients\' residential address'}
+                    handleChange = {this.handleInput}
+                    /> 
         
           <Input inputType={'date'} 
                     name={'date_of_birth'}
@@ -146,13 +154,13 @@ class FormContainer extends Component {
                     handleChange = {this.handleInput}
                     /> 
 
-          <Input inputType={'text'}
-                    title= {'Address'} 
-                    name= {'address_1'}
-                    value={this.state.patient.address_1} 
-                    placeholder = {'Enter Clients\' residential address'}
+          <Select title={'Gender'}
+                    name={'gender'}
+                    options = {this.state.genderOptions} 
+                    value = {this.state.patient.gender}
+                    placeholder = {'Select Gender'}
                     handleChange = {this.handleInput}
-                    /> 
+                    />
 
           <Input inputType={'text'}
                     title= {'Emergency Contact'} 
@@ -162,14 +170,6 @@ class FormContainer extends Component {
                     handleChange = {this.handleInput}
                     />
 
-          <Select title={'Gender'}
-                    name={'gender'}
-                    options = {this.state.genderOptions} 
-                    value = {this.state.patient.gender}
-                    placeholder = {'Select Gender'}
-                    handleChange = {this.handleInput}
-                    />
-          
           <Button 
                     action = {this.handleFormSubmit}
                     type = {'primary'} 

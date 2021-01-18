@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 
 import { StateContext } from '../config/store';
 
+import { Button } from './FormComponents';
+
 class UserInfo extends Component{
     static contextType = StateContext
 
@@ -31,10 +33,11 @@ class UserInfo extends Component{
                 {patientInfo.date_of_birth}
                 {patientInfo.gender}
                 {patientInfo.emergency_contact}
-                <button>
-                {/* <button onClick={(event) => this.edit(event)}> */}
-                Edit
-                </button>
+                <Button 
+                    // action = {this./*enter route path here */}
+                    type = {'primary'} 
+                    title = {'Edit'} 
+                    /> 
             </div>
         )
     }

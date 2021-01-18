@@ -69,7 +69,6 @@
   color: white;
 }
 
-/* This isn't working yet... hover same color as original website and trying to make underline animation the same*/
 .nav-links a:hover{
     color: #ff7300;
     display: inline-block;
