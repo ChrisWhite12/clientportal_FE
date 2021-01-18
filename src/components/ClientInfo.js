@@ -4,10 +4,7 @@ import { getPatient } from '../services/apiServices';
 //form component
 import { Button, Select, Input} from './FormComponents';
 import FormContainer from './FormContainer';
-    
   
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  // }, []);
 class ClientInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +21,7 @@ class ClientInfo extends React.Component {
         .catch((err) => {
             console.log(err)
         })
-  }
+  }   
   
   render() {
     return (

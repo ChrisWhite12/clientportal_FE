@@ -5,15 +5,21 @@ import api from '../config/api';
 class FormContainer extends Component {  
     constructor(props) {
       super(props);
-  
-    //   useEffect(() => {
-    //         // get user and set form fields
-    //         userService.getById(id).then(user => {
-    //             const fields = ['title', 'firstName', 'lastName', 'email', 'role'];
-    //             fields.forEach(field => setValue(field, user[field]));
-    //             setUser(user);
-    //         });
-    //    }, []);
+
+      // axios.post, newUser)
+  //       .then(response => {           
+  //           this.setState({}) // get age, name and other data from response and set 
+  //                             //  the states here respectively 
+  //       })
+  //       .catch(error => error);  
+
+  // componentDidMount() {
+  //   axios.get(`https://jsonplaceholder.typicode.com/users`)
+  //     .then(res => {
+  //       const persons = res.data;
+  //       this.setState({ persons });
+  //     })
+  // }
 
       this.state = {
         patient: {
@@ -85,8 +91,6 @@ class FormContainer extends Component {
     //       }
     //     }), () => console.log(this.state.patient.gender))
     // }
-  
-    /* This lifecycle hook gets executed when the component mounts */
     
     handleFormSubmit(e) {
       e.preventDefault();
@@ -108,7 +112,7 @@ class FormContainer extends Component {
   
     handleCancelForm(e) {
     
-        e.preventDefault();//prevents page from being refresehd on form submission
+        e.preventDefault();//prevents page from being refreshed on form submission
         this.setState({ 
           patient: {
             first_name: '',

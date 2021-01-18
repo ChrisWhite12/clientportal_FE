@@ -68,9 +68,9 @@ const Notifications = () => {
                 <button onClick={(event) => handleDelete(event)} value={ticket._id}>Delete</button></li>
             })}
             </ul>
-            <button id="create_ticket" onClick={clickTicket}>
+            {/* <button id="create_ticket" onClick={clickTicket}>
                     Create Ticket
-            </button>
+            </button> */}
         </div>
     )
 }
