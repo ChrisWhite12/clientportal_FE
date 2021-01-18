@@ -17,22 +17,22 @@ const Notifications = () => {
             })
     },[])
 
-    const clickTicket = () => {
-        console.log('creating ticket')
-        createTicket({
-            appId: count,
-            appDate: "1/1/21",
-            status: "pending",
-            notified: false,
-        })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        setCount(count + 1)
-    }
+    // const clickTicket = () => {
+    //     console.log('creating ticket')
+    //     createTicket({
+    //         appId: count,
+    //         appDate: "1/1/21",
+    //         status: "pending",
+    //         notified: false,
+    //     })
+    //         .then((res) => {
+    //             console.log(res)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    //     setCount(count + 1)
+    // }
 
     const handleAccept = (event) => {
         let ticketUpdate = tickets.filter(el => el._id == event.target.value)[0]

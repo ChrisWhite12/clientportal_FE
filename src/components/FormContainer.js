@@ -26,13 +26,6 @@ class FormContainer extends Component {
           first_name: '',
           last_name: '',
           address_1: '',
-          // paitent_phone_numbers: '',
-          //   //this is what the JSON looks like...how do i do the syntax?
-          //   // "patient_phone_numbers": [
-          //   //   {
-          //   //     "phone_type": "Mobile",
-          //   //     "number": "61444444444"
-          //   //   },
           date_of_birth: '',
           gender: '',
           emergency_contact: '',

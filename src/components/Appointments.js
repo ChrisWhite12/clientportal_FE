@@ -37,11 +37,11 @@ class Appointments extends Component{
         clickTicket = (event) => {
             console.log('creating ticket')
             console.log(event.target.value)
-                const testvariable = this.state.data.filter(el2 => el2.id == event.target.value)
-                console.log(testvariable)
+                const apptTicketInfo = this.state.data.filter(el2 => el2.id == event.target.value)
+                console.log(apptTicketInfo)
             createTicket({
-                appId: testvariable[0].id,
-                appDate: testvariable[0].starts_at,
+                appId: apptTicketInfo[0].id,
+                appDate: apptTicketInfo[0].starts_at,
                 status: "pending",
                 notified: false,
             })

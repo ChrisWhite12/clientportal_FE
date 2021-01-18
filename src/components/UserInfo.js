@@ -9,19 +9,13 @@ class UserInfo extends Component{
         super(props)
         this.state = {
             patientInfo: [],
-            // appointInfo: []
         }
     }
 
     componentDidMount() {
         const patientInfo = this.context.store.patientInfo.patient
-        // const appointInfo = this.context.store.patientInfo.appointments
         console.log(patientInfo)
-        // console.log(appointInfo)
         this.setState({patientInfo})
-        // this.setState({patientInfo: patientInfo((el) => {
-        //     return <p key={`key_${el.id}`}>{el.id}</p>
-        // })})
     }
 
     render(){
@@ -31,6 +25,16 @@ class UserInfo extends Component{
             <div>
                 <h1>Client Information</h1>
                 {patientInfo.id}
+                {patientInfo.first_name}
+                {patientInfo.last_name}
+                {patientInfo.address_1}
+                {patientInfo.date_of_birth}
+                {patientInfo.gender}
+                {patientInfo.emergency_contact}
+                <button>
+                {/* <button onClick={(event) => this.edit(event)}> */}
+                Edit
+                </button>
             </div>
         )
     }
