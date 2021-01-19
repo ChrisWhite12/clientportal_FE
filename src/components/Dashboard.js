@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect } from 'react';
-=======
 import React, { useEffect} from 'react';
->>>>>>> 4ffdc4d425834773258c38d1a3082e8612e754b5
 import {useGlobalState} from '../config/store';
 import '../App.css';
 import { Nav } from 'react-bootstrap';
