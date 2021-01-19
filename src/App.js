@@ -13,7 +13,8 @@ import { StateContext } from './config/store';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import UsersAll from './components/Users';
-import LogoutBtn from './components/LogoutBtn'
+import Footer from './components/Footer';
+
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
           <Route path='/reset_password/:token' render={(props) => <ResetPassword {...props} />}/>
           <Route exact path='/users' component={UsersAll} />
         </Switch>
-        <LogoutBtn />
+        <Footer />
       </div>
       </Router>
     </StateContext.Provider>

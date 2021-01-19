@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useGlobalState} from "../config/store"
 import {loginUser} from "../services/authServices"
 import {Link} from 'react-router-dom'
+import { Nav } from 'react-bootstrap';
 
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()
@@ -36,20 +37,22 @@ const Login = ({history}) => {
 
     return (
         <div className="main_sec">
-            <h1>Welcome to the Brain Train Client Portal</h1>
+            <h1 className="mainheader">Welcome to the Brain Train Client Portal</h1>
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
                 <p>{message}</p>
                 <div>
                     <input type="checkbox"></input>
-                    <label> Remember Me</label>
+                    <label className="label"> Remember Me</label>
                 </div>
                 <Link to="/forgot_password">
                     Forgot password
                 </Link>
-                <input id="login_btn" type="submit" value="Log In"></input>
-                <Link id="sign_up_btn" to="/register">Sign Up</Link>
+                <input className="login_btn" type="submit" value="Log In"></input>
+                <Link className="sign_up_btn" to="./Register">
+                    Sign Up
+                </Link>
             </form>
         </div>
     )

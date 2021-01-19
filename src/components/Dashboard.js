@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
+=======
+import React, { useEffect} from 'react';
+>>>>>>> 4ffdc4d425834773258c38d1a3082e8612e754b5
 import {useGlobalState} from '../config/store';
 import '../App.css';
-// react-bootstrap components
-import {Container, Row, Col, Nav} from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { getPatient } from '../services/apiServices';
 import ClientInfo from './ClientInfo';
+import UserInfo from './UserInfo';
 import Home from './Home';
 
 import {
@@ -12,7 +16,7 @@ import {
     Switch,
     Route,
     Link,
-    useRouteMatch
+    useRouteMatch,
 } from 'react-router-dom'
 import Appointments from './Appointments';
 import Notifications from './Notifications';
@@ -40,31 +44,22 @@ const Dashboard = () => {
     },[])
 
     return (
-        <div className="main_sec">
+        <div className="sidenavcontainer">
         <Router>
-            <Container id="Dashboard" fluid="md">
-                <Row>
-                    <Col className="col-4 text-light bg-dark">  
-                        <Nav defaultActiveKey="/" className="flex-column">
-                            <Nav.Link as={Link} className="border border-light solid rounded p-3" eventKey="link-1" to={`${url}/`}>Dashboard</Nav.Link>
-                            <Nav.Link as={Link} className="border border-light solid rounded p-3" eventKey="link-1" to={`${url}/info`}>Client Info</Nav.Link>
-                            <Nav.Link as={Link} className="border border-light solid rounded p-3" eventKey="link-2" to={`${url}/appointments`}>Booked Appointments</Nav.Link>
-                            <Nav.Link as={Link} className="border border-light solid rounded p-3" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link>
-                        </Nav>
-                    </Col>
+            <Nav defaultActiveKey="/" className="flex-column" id="sidenav">
+                <Nav.Link as={Link} className="sidenav_btn" id="d" eventKey="link-1" to={`${url}/`}>Dashboard</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="ci" eventKey="link-1" to={`${url}/info`}>Client Info</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="ba" eventKey="link-2" to={`${url}/appointments`}>Booked Appointments</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link>
+            </Nav>
 
-
-                    <Col className="col-8 text-light bg-dark">
-                        <Switch>
-                            <Route exact path={`${path}`} component={Home}/>
-                            <Route path={`${path}/info`} component={ClientInfo}/>
-                            <Route path={`${path}/appointments`} component={Appointments}/>
-                            <Route path={`${path}/notifications`} component={Notifications}/>
-                        </Switch>
-                    </Col>
-
-                </Row>
-            </Container>
+            <Switch>
+                <Route exact path={`${path}`} component={Home}/>
+                <Route exact path={`${path}/info/edit`} component={ClientInfo}/>
+                <Route path={`${path}/appointments`} component={Appointments}/>
+                <Route path={`${path}/notifications`} component={Notifications}/>
+                <Route exact path={`${path}/info`} component={UserInfo}/>
+            </Switch>
         </Router>
         </div>
         );

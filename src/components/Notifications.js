@@ -17,22 +17,22 @@ const Notifications = () => {
             })
     },[])
 
-    const clickTicket = () => {
-        console.log('creating ticket')
-        createTicket({
-            appId: count,
-            appDate: "1/1/21",
-            status: "pending",
-            notified: false,
-        })
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        setCount(count + 1)
-    }
+    // const clickTicket = () => {
+    //     console.log('creating ticket')
+    //     createTicket({
+    //         appId: count,
+    //         appDate: "1/1/21",
+    //         status: "pending",
+    //         notified: false,
+    //     })
+    //         .then((res) => {
+    //             console.log(res)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    //     setCount(count + 1)
+    // }
 
     const handleAccept = (event) => {
         let ticketUpdate = tickets.filter(el => el._id === event.target.value)[0]
@@ -57,7 +57,7 @@ const Notifications = () => {
     }
 
     return (
-        <div>
+        <div className="notewrapper">
             <h1>Notifications</h1>
             <ul>
             {tickets.map((ticket) => {
@@ -68,9 +68,9 @@ const Notifications = () => {
                 <button onClick={(event) => handleDelete(event)} value={ticket._id}>Delete</button></li>
             })}
             </ul>
-            <button id="create_ticket" onClick={clickTicket}>
+            {/* <button id="create_ticket" onClick={clickTicket}>
                     Create Ticket
-            </button>
+            </button> */}
         </div>
     )
 }

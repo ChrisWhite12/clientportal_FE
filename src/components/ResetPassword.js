@@ -60,7 +60,7 @@ const ResetPassword = ({history, match}) => {
 
     return (
         <div className="main_sec">
-            <h1>Password Reset</h1>  
+            <h1 className="mainheader">Password Reset</h1>
             <form className="login_card" onSubmit={handleSubmit}>
             {(!errorState)?(  
                 <div>
