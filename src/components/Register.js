@@ -43,7 +43,7 @@ const Register = ({history}) => {
 
     return (
         <div className="main_sec">
-            <h1>Welcome to the Brain Train Client Portal</h1>
+            <h1 className="mainheader">Welcome to the Brain Train Client Portal</h1>
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" type="text" placeholder="email" onChange={handleChange}></input>
                 <input className="login_fields" name="password" type="password" placeholder="password" onChange={handleChange}></input>
@@ -52,9 +52,9 @@ const Register = ({history}) => {
                 {message}
                 <div>
                     <input type="checkbox"></input>
-                    <label>Agree to terms and conditions</label>
+                    <label className="label">Agree to terms and conditions</label>
                 </div>
-                <input id="sign_up_btn" type="submit" value="Sign Up"></input>
+                <input className="sign_up_btn" type="submit" value="Sign Up"></input>
             </form>
         </div>
     )

@@ -1,53 +1,35 @@
 @import "https://fonts.googleapis.com/css?family=Roboto Condensed";
-/* @import "https://fonts.googleapis.com/css?family=sans-serif"; */
+@import "https://fonts.googleapis.com/css?family=sans-serif";
 
 .App {
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 400;
+  background-color: #000000;
+  color: #5e5c5c;
+  min-height: 100%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+ /* Dont know what this was for? */
+/* .App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
   margin: 150px auto 0; 
   padding: 0; 
   list-style: none; 
   display: table;
   width: 600px;
   text-align: center;
-}
+}  */
 
 .App-link {
   color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Find in MainNav.js */
 .nav-links{
   display: flex;
   align-items: center;
@@ -71,81 +53,103 @@
 
 .nav-links a:hover{
     color: #ff7300;
-    display: inline-block;
-    padding: 15px 20px;
-    position: relative;
-  }
-  a:after {    
+    text-decoration: none;
+  } 
+  .nav-links a:after {    
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
     display: block;
     height: 2px;
     left: 50%;
-    position: absolute;
     background: #ff7300;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }
-  a:hover:after { 
+  .nav-links a:hover:after { 
     width: 100%; 
     left: 0; 
-  }
+  } 
+
+/* Find in Login.js, Register.js, Reset Password.js, Forgot Password.js */
+.main_sec{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+.mainheader{
+  margin: 6px;
+  padding: 10px;
+  padding-bottom: 20px;
+}
 
 .login_card{
   height: 50vh;
   width: 60vw;
-  background-color: #000000;
+  background-color: #E1E2E4;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   border-radius: 20px;
   padding: 20px;
-  color: white;
 }
 
-.main_sec{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#login_btn{
+.login_btn{
   background-color: #27b0f4;
   color:white;
   height: 50px;
   width: 60%;
   border-radius: 12px;
+  border-style: solid;
+  border-color: #27b0f4;
+  margin-top: 10px;
 }
 
-#sign_up_btn{
-  color:white;
-  height: 50px;
-  width: 60%;
-  margin: 10px;
-  border-radius: 12px;
-  background-color: #9353AD;
+.login_btn:hover {
+  transition-duration: 0.3s;
+  background-color: #2598D3;
 }
+
 .login_fields{
   width: 60%;
   height: 70px;
   font-size: 30px;
   border-radius: 4px;
   margin: 10px;
+  border-style: solid;
+  border-color: white;
 }
 
-table {
+.sign_up_btn{
+  color:white;
+  height: 50px;
+  width: 60%;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #9353AD;
+  border-style: solid;
+  border-color: #9353AD;
+}
+
+.sign_up_btn:hover {
+  transition-duration: 0.3s;
+  background-color: #76428b;
+}
+
+.label{
+  color: #5e5c5c;
+  padding-left: 10px;
+}
+
+/* Find in Appointments.js */
+.table {
   border-spacing: 0;
   border: 1px solid black;
-
-  tr {
-    :last-child {
-      td {
-        border-bottom: 0;
-      }
-    }
-  }
+}
 
   th,
   td {
@@ -153,9 +157,111 @@ table {
     padding: 0.5rem;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
-
-    :last-child {
-      border-right: 0;
-    }
   }
+
+/* Find in Dashboard.js */
+.sidenavcontainer {
+  display: flex;
+  padding-bottom: 100vh;
+}
+
+#sidenav {
+  max-width: 40%;
+  padding-left: 80px;
+  padding-top: 50px;
+}
+
+.sidenav_btn {
+  color: white;
+  background-color: #119548;
+  border-radius: 12px;
+  margin: 12px;
+}
+
+.sidenav_btn:hover {
+  color: white;
+  filter: brightness(85%);
+}
+
+  #d {
+    padding: 19px;
+  }
+
+  #ci {
+    padding: 19px;
+    background-color: #9353AD;
+    line-height: auto;
+  }
+
+  #ba {
+    background-color: #27b0f4;
+    padding: 16px;
+  }
+
+  #n {
+    padding: 19px;
+    background-color: #F7A04C;
+  }
+
+/* Find this in Home.js */
+.home {
+  padding-bottom: 20px;
+  width: 60%;
+  color: white;
+}
+
+  #nxtappt {
+    padding: 20px;
+    border-style: solid;
+    border-color: white;
+    margin: 20px;
+  }
+
+/* Find this in UserInfo.js */
+.displayinfowrapper {
+  width: 60%;
+  color: white;
+}
+
+.fieldnames {
+  padding: 2px;
+  margin: 2px;
+}
+
+.displaytextbox {
+  color: black;
+  background-color: white;
+  margin: 4px;
+  padding-top: 6px;
+}
+
+/* Find this in ClientInfo.js */
+.formwrapper {
+  width: 60%;
+  color: white;
+}
+
+/* Find this in Appointments.js */
+.apptwrapper {
+  width: 60%;
+  color: white;
+}
+
+/* Find this in Notifications.js */
+.notewrapper{
+  width: 60%;
+  color: white;
+}
+
+/* Find this in Footer.js */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  height: 8vh;
 }

@@ -38,14 +38,14 @@ const Button = (props) => {
             onChange={props.handleChange}
             className="form-control">
             <option value="" disabled>{props.placeholder}</option>
-            {/* {props.options.map(option => {
+            {props.options.map(option => {
               return (
                 <option
                   key={option}
                   value={option}
                   label={option}>{option}</option>
               );
-            })} */}
+            })}
           </select>
     </div>)
   }

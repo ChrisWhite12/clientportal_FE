@@ -57,7 +57,7 @@ const Notifications = () => {
     }
 
     return (
-        <div>
+        <div className="notewrapper">
             <h1>Notifications</h1>
             <ul>
             {tickets.map((ticket) => {

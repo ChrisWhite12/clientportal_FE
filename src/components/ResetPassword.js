@@ -52,7 +52,7 @@ const ResetPassword = ({history, match}) => {
 
     return (
         <div className="main_sec">
-            <h1>Password Reset</h1>
+            <h1 className="mainheader">Password Reset</h1>
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>

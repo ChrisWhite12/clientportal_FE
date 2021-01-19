@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 
 import { StateContext } from '../config/store';
 
-import { Notifications } from './Notifications';
-
 import { createTicket } from '../services/ticketServices';
 
 class Appointments extends Component{
@@ -18,22 +16,6 @@ class Appointments extends Component{
         }
     }
 
-    // const Notifications = () => {
-
-    //     const [count, setCount] = useState(1)
-    //     const [tickets, setTickets] = useState([])
-    
-    //     useEffect(() => {
-    //         getTicket()
-    //             .then((res) => {
-    //                 console.log(res)
-    //                 setTickets(res)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err)
-    //             })
-    //     },[])
-    
         clickTicket = (event) => {
             console.log('creating ticket')
             console.log(event.target.value)
@@ -53,7 +35,6 @@ class Appointments extends Component{
                 })
             // setCount(count + 1)
         }
-    // }
 
     componentDidMount() {
         // const patientInfo = this.context.store.patientInfo.patient
@@ -86,7 +67,7 @@ class Appointments extends Component{
         const {appointInfo} = this.state
 
         return (
-            <div>
+            <div className="apptwrapper">
                 <h1>Appointments</h1>
                 {appointInfo}
             </div>

@@ -1,25 +1,24 @@
 import React, {Component} from 'react';  
 import { Button, Select, Input} from './FormComponents';
-import api from '../config/api';
+import axios from 'axios';
+import { getPatient, updatePatient } from '../services/apiServices';
 
 class FormContainer extends Component {  
-    constructor(props) {
-      super(props);
-
-      // axios.post, newUser)
-  //       .then(response => {           
-  //           this.setState({}) // get age, name and other data from response and set 
-  //                             //  the states here respectively 
-  //       })
-  //       .catch(error => error);  
-
-  // componentDidMount() {
-  //   axios.get(`https://jsonplaceholder.typicode.com/users`)
-  //     .then(res => {
-  //       const persons = res.data;
-  //       this.setState({ persons });
-  //     })
-  // }
+  constructor(props){
+    super(props)
+    // this.state = {
+    //     patientInfo: {
+    //       first_name: this.state.patient.first_name,
+    //       last_name: this.state.patient.last_name,
+    //       address_1: this.state.patient.address_1,
+    //       date_of_birth: this.state.patient.date_of_birth,
+    //       sex: this.state.patient.sex,
+    //       emergency_contact: this.state.patient.emergency_contact,
+    // }}
+    
+  
+  // constructor(props) {
+  //     super(props);
 
       this.state = {
         patient: {
@@ -27,11 +26,11 @@ class FormContainer extends Component {
           last_name: '',
           address_1: '',
           date_of_birth: '',
-          gender: '',
+          sex: '',
           emergency_contact: '',
         },
   
-        genderOptions: ['Male', 'Female', 'Others'],  
+        sexOptions: ['Male', 'Female', 'Intersex', 'Female to Male', 'Male to Female'],  
 
       }
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -77,31 +76,67 @@ class FormContainer extends Component {
     //     }), () => console.log(this.state.patient.date_of_birth))
     // }
 
-    // handleGender(e) {
+    // handleSex(e) {
     //   let value = e.target.value;
     //   this.setState( prevState => ({ patient : 
-    //       {...prevState.patient, gender: value
+    //       {...prevState.patient, sex: value
     //       }
-    //     }), () => console.log(this.state.patient.gender))
+    //     }), () => console.log(this.state.patient.sex))
     // }
-    
+
     handleFormSubmit(e) {
-      e.preventDefault();
-      let userData = this.state.patient;
+        e.preventDefault();
+        console.log("updating patient info")
+        let userData = this.state.patient;
+        
+        updatePatient(userData)
+        .then((data) => {
+            console.log(data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+    
+    // handleFormSubmit(e) {
+    //   e.preventDefault();
+    //   let userData = this.state.patient;
   
-      fetch('https://api.au1.cliniko.com/v1/patients/{:id}',{
-          method: "PUT",
-          body: JSON.stringify(userData),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        }).then(response => {
-          response.json().then(data =>{
-            console.log("Successful" + data);
-          })
-      })
-    }   
+    //   fetch('https://api.au1.cliniko.com/v1/patients/', {
+    //       method: "PUT",
+    //       body: JSON.stringify(userData),
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //       },
+    //     }).then(response => {
+    //       response.json().then(data =>{
+    //         console.log("Successful" + data);
+    //       })
+    //   })
+    // }   
+
+    // handleSubmit(e) {
+    //   e.preventDefault();
+  
+    //   const data = {
+    //       patient: this.state.patient 
+    //   };
+    //     // {
+    //       //   first_name: '',
+    //       //   last_name: '',
+    //       //   address_1: '',
+    //       //   date_of_birth: '',
+    //       //   sex: '',
+    //       //   emergency_contact: '',
+    //       // },
+    //   // };
+  
+    //   axios.post('https://api.au1.cliniko.com/v1/patients/', { data })
+    //     .then(res => {
+    //       console.log(data);
+    //     })
+    //   }
   
     handleCancelForm(e) {
     
@@ -112,7 +147,7 @@ class FormContainer extends Component {
             last_name: '',
             address_1: '',
             date_of_birth: '',
-            gender: '',
+            sex: '',
             emergency_contact: '',
           },
         })
@@ -123,7 +158,7 @@ class FormContainer extends Component {
         <form className="container-fluid" onSubmit={this.handleFormSubmit}>
          
           <Input inputType={'text'}
-                    title= {'First Name'} 
+                    title= {'First Name:'} 
                     name= {'first_name'}
                     value={this.state.patient.first_name} 
                     placeholder = {'Enter the Client\'s name'}
@@ -131,7 +166,7 @@ class FormContainer extends Component {
                     /> 
 
           <Input inputType={'text'}
-                    title= {'Last Name'} 
+                    title= {'Last Name:'} 
                     name= {'last_name'}
                     value={this.state.patient.last_name} 
                     placeholder = {'Enter the Client\'s Last name(s)'}
@@ -139,7 +174,7 @@ class FormContainer extends Component {
                     /> 
 
           <Input inputType={'text'}
-                    title= {'Address'} 
+                    title= {'Address:'} 
                     name= {'address_1'}
                     value={this.state.patient.address_1} 
                     placeholder = {'Enter Clients\' residential address'}
@@ -148,22 +183,22 @@ class FormContainer extends Component {
         
           <Input inputType={'date'} 
                     name={'date_of_birth'}
-                    title= {'Date of Birth'} 
+                    title= {'Date of Birth:'} 
                     value={this.state.patient.date_of_birth} 
                     placeholder = {'Enter the Client\'s Date of Birth'}
                     handleChange = {this.handleInput}
                     /> 
 
-          <Select title={'Gender'}
-                    name={'gender'}
-                    options = {this.state.genderOptions} 
-                    value = {this.state.patient.gender}
-                    placeholder = {'Select Gender'}
+          <Select title={'Sex:'}
+                    name={'sex'}
+                    options = {this.state.sexOptions} 
+                    value = {this.state.patient.sex}
+                    placeholder = {'Select Sex'}
                     handleChange = {this.handleInput}
                     />
 
           <Input inputType={'text'}
-                    title= {'Emergency Contact'} 
+                    title= {'Emergency Contact:'} 
                     name= {'emergency_contact'}
                     value={this.state.patient.emergency_contact} 
                     placeholder = {'Enter the name and Phone number of the Client\'s Emergency Contact'}

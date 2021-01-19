@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { getPatient } from '../services/apiServices';
-//form component
-import { Button, Select, Input} from './FormComponents';
 import FormContainer from './FormContainer';
   
 class ClientInfo extends React.Component {
@@ -25,9 +23,9 @@ class ClientInfo extends React.Component {
   
   render() {
     return (
-      <div className="container">
+      <div className="formwrapper">
         <div>
-          <h1>ClientInfo</h1>
+          <h1>Client Information</h1>
         </div>
         <div><FormContainer />
         </div>

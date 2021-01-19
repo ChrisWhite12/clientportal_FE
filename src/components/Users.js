@@ -32,7 +32,7 @@ const UsersAll = () => {
     }
 
     return (
-        <div>
+        <div className="main_sec">
             <h1>UsersAll</h1>
             {usersAll.map((userInfo) => {
                 return(<div key={`user_${userInfo._id}`}><p>UserId: {userInfo._id}</p><p>Email: {userInfo.email}</p><p>role: {userInfo.role}</p><button value={userInfo.email} onClick={(event) => handleClick(event)}>Make Admin</button></div>)
