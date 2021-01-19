@@ -32,8 +32,9 @@ const Register = ({history}) => {
                     history.push('/dashboard')
                 })
                 .catch((err) => {
-                    console.log(err.response.data.error)
-                    setMessage(err.response.data.error)
+                    console.log('failed to register')
+                    console.log(err)
+                    // setMessage(err)
                 })
         }
         else{

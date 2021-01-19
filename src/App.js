@@ -3,7 +3,7 @@ import MainNav from './components/MainNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useReducer } from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 // import Dashboard from './views/Dashboard';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login.js';
@@ -13,12 +13,10 @@ import { StateContext } from './config/store';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import UsersAll from './components/Users';
-
+import LogoutBtn from './components/LogoutBtn'
 
 
 function App() {
-
-  // const API_KEY = process.env.REACT_APP_API_KEY;
   
   // initial state for state reducer
   const initialState = {
@@ -33,20 +31,23 @@ function App() {
   }
 
   const [store, dispatch] = useReducer(stateReducer,initialState)
-
+  const {loggedInUser} = store
+  
   return (
     <StateContext.Provider value={{store,dispatch}}>
       <Router>  
       <div className="App">
         <MainNav />
         <Switch>
-          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/'>{(loggedInUser)? <Redirect to="/dashboard" /> : <Redirect to="/sign_in" />}</Route>
+          <Route exact path='/dashboard' component={Dashboard}></Route>
           <Route path='/sign_in' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/forgot_password' component={ForgotPassword} />
           <Route path='/reset_password/:token' render={(props) => <ResetPassword {...props} />}/>
           <Route exact path='/users' component={UsersAll} />
         </Switch>
+        <LogoutBtn />
       </div>
       </Router>
     </StateContext.Provider>

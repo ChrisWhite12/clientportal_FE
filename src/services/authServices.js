@@ -47,9 +47,14 @@ async function updateUser(userInfo,token){
 
 
 async function resetToken(token){
+    try{
     const response = await api.get(`/user/reset/${token}`)
     console.log("resetToken from server", response)
     return response
+    }
+    catch(err){
+        throw(err)
+    }
 }
 
 async function readUsers(){

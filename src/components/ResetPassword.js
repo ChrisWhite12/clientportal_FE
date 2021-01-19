@@ -11,10 +11,19 @@ const ResetPassword = ({history, match}) => {
         password_confirm: ''
     })
     const [message,setMessage] = useState('')
+    const [errorState, setErrorState] = useState(false)
 
     useEffect(() => {
         console.log(match.params.token)
         resetToken(match.params.token)
+            .then(() => {
+                console.log('token ok')
+            })
+            .catch((err) => {
+                console.log('token invalid')
+                setErrorState(true)
+                setMessage('Token Invalid')
+            })
     },[])
 
     const handleChange = (event) => {
@@ -51,14 +60,19 @@ const ResetPassword = ({history, match}) => {
 
     return (
         <div className="main_sec">
-            <h1>Password Reset</h1>
+            <h1>Password Reset</h1>  
             <form className="login_card" onSubmit={handleSubmit}>
-                <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
-                <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
-                <input className="login_fields" name="password_confirm" onChange={handleChange} type="password" placeholder="password confirm"></input>
-                {!userDetails["password"] ? <p></p> : (userDetails["password"] === userDetails["password_confirm"])? <p style={{color: "green"}}>passwords match</p>: <p style={{color: "red"}}>passwords don't match</p>}
-                <p>{message}</p>
-                <input id="forgot_password_btn" type="submit"></input>
+            {(!errorState)?(  
+                <div>
+                    <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
+                    <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
+                    <input className="login_fields" name="password_confirm" onChange={handleChange} type="password" placeholder="password confirm"></input>
+                    {!userDetails["password"] ? <p></p> : (userDetails["password"] === userDetails["password_confirm"])? <p style={{color: "green"}}>passwords match</p>: <p style={{color: "red"}}>passwords don't match</p>}
+                    <p>{message}</p>
+                    <input id="forgot_password_btn" type="submit"></input>
+                </div>
+                ):
+            (<p>{message}</p>)}
             </form>
         </div>
     )
