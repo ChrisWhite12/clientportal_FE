@@ -8,7 +8,7 @@ const Home = () => {
 
     const {store} = useGlobalState()
     const {loggedInUser, patientInfo} = store
-    const history = useHistory()
+    // const history = useHistory()
 
     // const dummy_appointment = {date: "1/1/21", time: "10:00am", location: "1 Main St"}
     // console.log(patientInfo.appointments[0])
