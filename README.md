@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Register page
+The app uses authentication in the form of an email and password. To register, click the 'Register' or 'Sign up' buttons. Enter the email that is used for the patient records and a password in the two remaining fields. When clicking 'Sign Up' the app will log the user in and redirect to the dashboard. The app won't register a user if their email is not found in the patients or users (admins) in the Cliniko API. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![register](./docs/img/App_register.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+# Login page
+When the user is logged out and tries to access the website they are redirected to the login page. Sign in with the credentials that the user has registered with.
 
-### `yarn start`
+![register](./docs/img/App_login.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+If incorrect details are provided 'Invalid email or password' will show.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![register](./docs/img/App_invalid_login.png)
 
-### `yarn test`
+# Forgot password page
+If the user has forgotten their login details they can click 'Forgot password' to redirect to the forgot password page. Once the user enters their email and clicks 'Submit Query' the server will send a password reset email.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![register](./docs/img/App_forgot.png)
+# Reset password page
+The testing email service Etheral Email (https://ethereal.email/) is used and will receive the messages sent from the server. Copy the link to be redirected to the reset page.
 
-### `yarn build`
+![register](./docs/img/App_email.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The password reset creates a token that is attached to the users profile and will expire in 2 minutes. The user must enter their email and new password before that time to change it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![register](./docs/img/App_reset.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If the time expires the 'Token Invalid' message shows.
 
-### `yarn eject`
+![register](./docs/img/App_token_invalid.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Dashboard
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once the user is logged in they are redirected to the Dashboard where they can click links to other pages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![register](./docs/img/App_dash.png)
+# Appointments
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+On the Appointments page, the user can see there appointment information and be able to make a change request. If such a request is made a ticket is created containing the information.
 
-## Learn More
+![register](./docs/img/App_Appoint.png)
+# Client Info
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A user can see their information that is stored on the Cliniko site by accessing this tab. Clicking 'Edit' will redirect to a Edit details page where they can change the details.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![register](./docs/img/App_client.png)
+![register](./docs/img/App_client_edit.png)
+# Notifications
 
-### Code Splitting
+The Notifications tab will contain all of the tickets the user has created. If the user is an Admin it will contain all tickets where they can accept, reject or delete tickets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![register](./docs/img/App_noti.png)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Using the app
 
-### Making a Progressive Web App
+To start the app in the development environment enter into the terminal: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    yarn start
