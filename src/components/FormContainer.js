@@ -3,23 +3,9 @@ import { Button, Select, Input} from './FormComponents';
 import axios from 'axios';
 import { getPatient, updatePatient } from '../services/apiServices';
 
-class FormContainer extends Component {  
+class FormContainer extends Component {           //TODO format into functional comp
   constructor(props){
     super(props)
-    // this.state = {
-    //     patientInfo: {
-    //       first_name: this.state.patient.first_name,
-    //       last_name: this.state.patient.last_name,
-    //       address_1: this.state.patient.address_1,
-    //       date_of_birth: this.state.patient.date_of_birth,
-    //       sex: this.state.patient.sex,
-    //       emergency_contact: this.state.patient.emergency_contact,
-    // }}
-    
-  
-  // constructor(props) {
-  //     super(props);
-
       this.state = {
         patient: {
           first_name: '',
@@ -35,9 +21,6 @@ class FormContainer extends Component {
       }
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleCancelForm = this.handleCancelForm.bind(this);
-      // this.handleDate_of_Birth = this.handleDate_of_Birth.bind(this);
-      // this.handleFirstName = this.handleFirstName.bind(this);
-      // this.handleLastName = this.handleLastName.bind(this);
       this.handleInput = this.handleInput.bind(this);
     }
     
@@ -52,38 +35,6 @@ class FormContainer extends Component {
         }), () => console.log(this.state.patient))
     }
 
-    // handleFirstName(e) {
-    //   let value = e.target.value;
-    //   this.setState( prevState => ({ patient : 
-    //       {...prevState.patient, first_name: value
-    //       }
-    //     }), () => console.log(this.state.patient.first_name))
-    // }
-
-    // handleLastName(e) {
-    //   let value = e.target.value;
-    //   this.setState( prevState => ({ patient : 
-    //       {...prevState.patient, last_name: value
-    //       }
-    //     }), () => console.log(this.state.patient.last_name))
-    // }
-  
-    // handleDate_of_Birth(e) {
-    //   let value = e.target.value;
-    //   this.setState( prevState => ({ patient : 
-    //       {...prevState.patient, date_of_birth: value
-    //       }
-    //     }), () => console.log(this.state.patient.date_of_birth))
-    // }
-
-    // handleSex(e) {
-    //   let value = e.target.value;
-    //   this.setState( prevState => ({ patient : 
-    //       {...prevState.patient, sex: value
-    //       }
-    //     }), () => console.log(this.state.patient.sex))
-    // }
-
     handleFormSubmit(e) {
         e.preventDefault();
         console.log("updating patient info")
@@ -97,47 +48,7 @@ class FormContainer extends Component {
             console.log(err)
         })
     }
-    
-    // handleFormSubmit(e) {
-    //   e.preventDefault();
-    //   let userData = this.state.patient;
-  
-    //   fetch('https://api.au1.cliniko.com/v1/patients/', {
-    //       method: "PUT",
-    //       body: JSON.stringify(userData),
-    //       headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //       },
-    //     }).then(response => {
-    //       response.json().then(data =>{
-    //         console.log("Successful" + data);
-    //       })
-    //   })
-    // }   
 
-    // handleSubmit(e) {
-    //   e.preventDefault();
-  
-    //   const data = {
-    //       patient: this.state.patient 
-    //   };
-    //     // {
-    //       //   first_name: '',
-    //       //   last_name: '',
-    //       //   address_1: '',
-    //       //   date_of_birth: '',
-    //       //   sex: '',
-    //       //   emergency_contact: '',
-    //       // },
-    //   // };
-  
-    //   axios.post('https://api.au1.cliniko.com/v1/patients/', { data })
-    //     .then(res => {
-    //       console.log(data);
-    //     })
-    //   }
-  
     handleCancelForm(e) {
     
         e.preventDefault();//prevents page from being refreshed on form submission

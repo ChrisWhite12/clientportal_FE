@@ -1,52 +1,39 @@
-import React, { Component } from 'react'
-
+import React, { Component, useState } from 'react'
 import { StateContext } from '../config/store';
-
 import { Button } from './FormComponents';
-
 import { Link } from 'react-router-dom';
-
+import { useGlobalState } from '../config/store'
 import '../App.css';
 
-class UserInfo extends Component{
-    static contextType = StateContext
+const UserInfo = (props) => {
+    cosnt [patientInfoData, setPatientInfoData] = useState([])
 
-    constructor(props){
-        super(props)
-        this.state = {
-            patientInfo: [],
-        }
-    }
+    const {dispatch,store} = useGlobalState()
 
-    componentDidMount() {
-        const patientInfo = this.context.store.patientInfo.patient
+    useEffect(() => {
+        const {patientInfo} = store
         console.log(patientInfo)
-        this.setState({patientInfo})
-    }
+        setPatientInfoData(patientInfo)
+    }, [])
 
-    render(){
-        const {patientInfo} = this.state
-
-        return (
-             <div className="displayinfowrapper">        
-                <h1>Client Information</h1>
-                    <div className="fieldnames">Client ID Number:</div><div className="displaytextbox">{patientInfo.id}</div>
-                    <div className="fieldnames">Client First Name:</div><div className="displaytextbox">{patientInfo.first_name}</div>
-                    <div className="fieldnames">Client Last Name:</div><div className="displaytextbox">{patientInfo.last_name}</div>
-                    <div className="fieldnames">Client Address:</div><div className="displaytextbox">{patientInfo.address_1}</div>
-                    <div className="fieldnames">Client Date of Birth:</div><div className="displaytextbox">{patientInfo.date_of_birth}</div>
-                    <div className="fieldnames">Client Sex:</div><div className="displaytextbox">{patientInfo.sex}</div>
-                    <div className="fieldnames">Emergency Contact:{patientInfo.emergency_contact}</div>
-                    <Link to="/dashboard/info/edit">
-                    <Button 
-                        type = {'primary'} 
-                        title = {'Edit'} 
-                        /> 
-                    </Link>
-            </div>
-
-        )
-    }
-}
+    return (
+        <div className="displayinfowrapper">        
+            <h1>Client Information</h1>
+            <div className="fieldnames">Client ID Number:</div><div className="displaytextbox">{patientInfoData.id}</div>
+            <div className="fieldnames">Client First Name:</div><div className="displaytextbox">{patientInfoData.first_name}</div>
+            <div className="fieldnames">Client Last Name:</div><div className="displaytextbox">{patientInfoData.last_name}</div>
+            <div className="fieldnames">Client Address:</div><div className="displaytextbox">{patientInfoData.address_1}</div>
+            <div className="fieldnames">Client Date of Birth:</div><div className="displaytextbox">{patientInfoData.date_of_birth}</div>
+            <div className="fieldnames">Client Sex:</div><div className="displaytextbox">{patientInfoData.sex}</div>
+            <div className="fieldnames">Emergency Contact:{patientInfoData.emergency_contact}</div>
+            <Link to="/dashboard/info/edit">
+            <Button 
+                type = {'primary'} 
+                title = {'Edit'} 
+                /> 
+            </Link>
+        </div>
+    );
+};
 
 export default UserInfo

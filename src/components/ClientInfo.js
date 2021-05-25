@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { getPatient } from '../services/apiServices';
 import FormContainer from './FormContainer';
   
-class ClientInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: props.user
-    }
-  }
-
-  componentDidMount(){
+const ClientInfo = (props) => {
+  // const [userData, setUserData] = useState(props.user)
+  
+  useEffect(() => {
     getPatient()
         .then((data) => {
             console.log(data)
@@ -19,19 +14,17 @@ class ClientInfo extends React.Component {
         .catch((err) => {
             console.log(err)
         })
-  }   
-  
-  render() {
-    return (
-      <div className="formwrapper">
-        <div>
-          <h1>Client Information</h1>
-        </div>
-        <div><FormContainer />
-        </div>
+  },[])
+
+  return (
+    <div className="formwrapper">
+      <div>
+        <h1>Client Information</h1>
       </div>
-    )
-  }
+      <div><FormContainer />
+      </div>
+    </div>
+  )
 }
 
 export default ClientInfo
