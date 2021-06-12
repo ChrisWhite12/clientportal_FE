@@ -42,6 +42,8 @@ const Register = ({history}) => {
         }
     }
 
+    //TODO add modal to terms and conditions
+    
     return (
         <div className="main_sec">
             <h1 className="mainheader">Welcome to the Brain Train Client Portal</h1>

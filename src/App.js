@@ -31,6 +31,13 @@ function App() {
     }
   }
 
+  //TODO mobile version
+  //TODO handle tickets
+  //TODO password reset with live server
+  //TODO complete testing
+  //TODO default client details in info form
+  //optional twilio sms
+
   const [store, dispatch] = useReducer(stateReducer,initialState)
   const {loggedInUser} = store
   

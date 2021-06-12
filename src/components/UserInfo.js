@@ -6,7 +6,7 @@ import { useGlobalState } from '../config/store'
 import '../App.css';
 
 const UserInfo = (props) => {
-    cosnt [patientInfoData, setPatientInfoData] = useState([])
+    const [patientInfoData, setPatientInfoData] = useState([])
 
     const {dispatch,store} = useGlobalState()
 

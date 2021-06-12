@@ -12,7 +12,7 @@ const Home = () => {
 
     // const dummy_appointment = {date: "1/1/21", time: "10:00am", location: "1 Main St"}
     // console.log(patientInfo.appointments[0])
-
+    //TODO change time to date string
     return (
         <div className="home">
             <h1>Welcome {loggedInUser}</h1>

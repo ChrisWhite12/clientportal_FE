@@ -38,7 +38,7 @@ const Appointments = () => {
 
         // console.log(patientInfo)
         console.log('patient appointments -',data)
-
+        //TODO change dates to date string
         setAppointRender(data.map((el) => {
             return <p key={`key_${el.id}`}>
                         <table>
