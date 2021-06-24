@@ -1,36 +1,52 @@
-import React from 'react';  
+import React, { useEffect, useState } from 'react';  
 
 const Button = (props) => {
-    console.log(props.style);
     return(
       <button 
-        style= {props.style} 
-        className = {props.type=='primary'? 'btn btn-primary' : 'btn btn-secondary'}
-        onClick= {props.action} > 
+        style={props.style} 
+        className={props.type=='primary'? 'btn btn-primary' : 'btn btn-secondary'}
+        onClick={props.action} > 
         {props.title} 
       </button>)
 }
 
-const Input = (props) => {
+const FormInput = (props) => {
+  const [isEdit, setIsEdit] = useState(false)
+
+  useEffect(() => {
+    setIsEdit(props.editState)
+  },[props])
+
   return (  
   <div className="form-group">
-    <label for={props.name} className="form-label">{props.title}</label>
-    <input
-      className="form-control"
-      id={props.name}
-      name={props.name}
-      type={props.inputType}
-      value={props.value}
-      onChange={props.handleChange}
-      placeholder={props.placeholder} 
-      {...props} />
+    <label>{props.title}</label>
+    {isEdit ?
+      <input
+        className="form-control"
+        id={props.name}
+        name={props.name}
+        type={props.inputType}
+        // value={props.value}
+        onChange={props.handleChange}
+        placeholder={props.placeholder} 
+        {...props} />
+      :
+      <p className='form-text' id={props.name} name={props.name}>{props.value}</p>
+    }
   </div>
 )
 }  
 
 const Select = (props) => {
+  const [isEdit, setIsEdit] = useState(false)
+
+  useEffect(() => {
+    setIsEdit(props.editState)
+  },[props])
+
   return(<div className="form-group">
-      <label for={props.name}> {props.title} </label>
+      <label> {props.title} </label>
+      {isEdit ?
         <select
           id = {props.name}
           name={props.name}
@@ -47,9 +63,12 @@ const Select = (props) => {
             );
           })}
         </select>
+        :
+        <p className='form-text' id={props.name} name={props.name}>{props.value}</p>
+      }
   </div>)
 }
 
 export {Button};
 export {Select};
-export {Input};
+export {FormInput};

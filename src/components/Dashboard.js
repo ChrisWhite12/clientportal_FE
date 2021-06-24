@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useGlobalState} from '../config/store';
 import '../App.css';
 import { Nav } from 'react-bootstrap';
+
 import { getPatient } from '../services/apiServices';
-import UserInfo from './tabs/UserInfo';
-import Home from './tabs/Home';
 import {logoutUser} from '../services/authServices'
 
 import {
@@ -15,14 +14,17 @@ import {
     useRouteMatch,
     useHistory,
 } from 'react-router-dom'
+
 import Appointments from './tabs/Appointments';
 import Notifications from './tabs/Notifications';
-import EditUserInfo from './tabs/EditUserInfo';
+import UserInfo from './tabs/UserInfo';
+import Home from './tabs/Home';
 
     
 const Dashboard = () => {
 
     const {dispatch} = useGlobalState()
+    const [loading, setLoading] = useState(true)
 
     let {path,url} = useRouteMatch()
     const history = useHistory()
@@ -36,6 +38,7 @@ const Dashboard = () => {
                 type: "setPatientInfo",
                 data: data
             })
+            setLoading(false)
         })
         .catch((err) => {
             console.log(err)
@@ -43,7 +46,6 @@ const Dashboard = () => {
     },[])
 
     const handleLogout = ()  => {
-        console.log('LOGOUT')
         logoutUser()
             .then((res) => {
                 console.log("res", res)
@@ -66,16 +68,19 @@ const Dashboard = () => {
                 <Nav.Link as={Link} className="sidenav_btn" id="ci" eventKey="link-1" to={`${url}/info`}>Client Info</Nav.Link>
                 <Nav.Link as={Link} className="sidenav_btn" id="ba" eventKey="link-2" to={`${url}/appointments`}>Booked Appointments</Nav.Link>
                 <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link>
-                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`${url}/`} onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
 
-            <Switch>
-                <Route exact path={`${path}`} component={Home}/>
-                <Route exact path={`${path}/info/edit`} component={EditUserInfo}/>
-                <Route path={`${path}/appointments`} component={Appointments}/>
-                <Route path={`${path}/notifications`} component={Notifications}/>
-                <Route exact path={`${path}/info`} component={UserInfo}/>
-            </Switch>
+            {loading ? 
+                <p>Loading ... </p>
+            :
+                <Switch>
+                    <Route exact path={`${path}`} component={Home}/>
+                    <Route path={`${path}/appointments`} component={Appointments}/>
+                    <Route path={`${path}/notifications`} component={Notifications}/>
+                    <Route exact path={`${path}/info`} component={UserInfo}/>
+                </Switch>
+            }
         </Router>
         </div>
         );

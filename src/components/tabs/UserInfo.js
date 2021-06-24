@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { StateContext } from '../../config/store';
-import { Button } from '../FormComponents';
+import { Button, FormInput, Select } from '../FormComponents';
 import { Link } from 'react-router-dom';
 import { useGlobalState } from '../../config/store'
+
+import { updatePatient } from '../../services/apiServices';
 import '../../App.css';
 
 const UserInfo = (props) => {
-    const [patientInfoData, setPatientInfoData] = useState([])
+    const [editState, setEditState] = useState(false)
+    const [patientInfoData, setPatientInfoData] = useState({})
+    const [patientChangeData, setPatientChangeData] = useState({})
 
     const {dispatch,store} = useGlobalState()
+
+    const sexOptions = ['Male', 'Female', 'Intersex', 'Female to Male', 'Male to Female']
 
     useEffect(() => {
         const {patientInfo} = store
@@ -16,26 +22,145 @@ const UserInfo = (props) => {
         setPatientInfoData(patientInfo.patient)
     }, [])
 
+    const handleEdit = () => {
+        console.log('changing to edit')
+        if(editState){                          //when saving
+            updatePatient(patientInfoData)
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+        setEditState(!editState)
+    }
+
+    const handleInput = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
+
+        setPatientInfoData(prevState => {
+            return {
+                ...prevState, 
+                [name]: value
+            }
+        })
+        console.log(patientInfoData)
+   }
+
     return (
         <div className="displayinfowrapper">        
             <h1>Client Information</h1>
-            <div className="fieldnames">Client First Name:</div>
-            <div className="displaytextbox">{patientInfoData.first_name}</div>
-            <div className="fieldnames">Client Last Name:</div>
-            <div className="displaytextbox">{patientInfoData.last_name}</div>
-            <div className="fieldnames">Client Address:</div>
-            <div className="displaytextbox">{patientInfoData.address_1}</div>
-            <div className="fieldnames">Client Date of Birth:</div>
-            <div className="displaytextbox">{patientInfoData.date_of_birth}</div>
-            <div className="fieldnames">Client Sex:</div>
-            <div className="displaytextbox">{patientInfoData.sex}</div>
-            <div className="fieldnames">Emergency Contact:{patientInfoData.emergency_contact}</div>
-            <Link to="/dashboard/info/edit">
+            <div className='formRow'>
+                <FormInput 
+                    inputType={'text'}
+                    title={'First Name:'} 
+                    name={'first_name'}
+                    value={patientInfoData.first_name}
+                    handleChange={handleInput}
+                    editState={editState}
+                />
+                <FormInput 
+                    inputType={'text'}
+                    title={'Last Name:'} 
+                    name={'last_name'}
+                    value={patientInfoData.last_name}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+            </div>
+
+            <div className='formRow'>
+                <FormInput 
+                    inputType={'text'}
+                    title={'Address:'} 
+                    name={'address_1'}
+                    value={patientInfoData.address_1}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+                <FormInput 
+                    inputType={'text'}
+                    title={'City/Suburb:'} 
+                    name={'city'}
+                    value={patientInfoData.city}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+            </div>
+
+            <div className='formRow'>
+                <FormInput 
+                    inputType={'text'}
+                    title={'State:'} 
+                    name={'state'}
+                    value={patientInfoData.state}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+                <FormInput 
+                    inputType={'text'}
+                    title={'Country:'} 
+                    name={'country'}
+                    value={patientInfoData.country}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+                <FormInput 
+                    inputType={'text'}
+                    title={'Postcode:'} 
+                    name={'post_code'}
+                    value={patientInfoData.post_code}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+            </div>
+            
+            <div className='formRow'>
+                <FormInput 
+                    inputType={'date'}
+                    title={'DOB:'} 
+                    name={'date_of_birth'}
+                    value={patientInfoData.date_of_birth}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+                <Select 
+                    title={'Sex:'}
+                    name={'sex'}
+                    options = {sexOptions} 
+                    value = {patientInfoData.sex}
+                    placeholder = {'Select Sex'}
+                    handleChange = {handleInput}
+                    editState={editState}
+                />
+            </div>
+
+            <div className='formRow'>
+            <FormInput 
+                inputType={'text'}
+                title={'Contact:'} 
+                name={'contact'}
+                value={patientInfoData.patient_phone_numbers ? patientInfoData.patient_phone_numbers[0].number : ''}
+                handleChange = {handleInput}
+                editState={editState}
+            />
+            <FormInput 
+                inputType={'text'}
+                title={'Emergency Contact:'} 
+                name={'emergency_contact'}
+                value={patientInfoData.emergency_contact}
+                handleChange = {handleInput}
+                editState={editState}
+            />
+
+            </div>
             <Button 
-                type = {'primary'} 
-                title = {'Edit'} 
-                /> 
-            </Link>
+                type = {editState ? 'secondary' : 'primary'} 
+                title = {editState ? 'Save' : 'Edit'} 
+                action={handleEdit}
+            />
         </div>
     );
 };

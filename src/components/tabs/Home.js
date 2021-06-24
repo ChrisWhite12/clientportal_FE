@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {useGlobalState} from '../../config/store';
+import timeConvert from '../../utils/timeConvert';
 
 // import {Container, Row, Col} from 'react-bootstrap';
 
@@ -9,18 +10,7 @@ const Home = () => {
     const {store} = useGlobalState()
     const {loggedInUser, patientInfo} = store
 
-    const zeroPad = (num, places) => {
-        return String(num).padStart(places, '0')
-    }
-
-    const appStartDate = new Date(patientInfo?.appointments[0]?.appointment_start)
-    const hrStart = zeroPad(appStartDate.getHours(),2)
-    const minStart = zeroPad(appStartDate.getMinutes(),2)
-    const dateStart = appStartDate.toDateString()
-    const appEndDate = new Date(patientInfo?.appointments[0]?.appointment_end)
-    const hrEnd = zeroPad(appEndDate.getHours(),2)
-    const minEnd = zeroPad(appEndDate.getMinutes(),2)
-
+    const {dateStart, hrStart, minStart, hrEnd, minEnd} = timeConvert(patientInfo.appointments[0]?.appointment_start, patientInfo.appointments[0]?.appointment_end)
 
     //TODO change time to date string
     return (

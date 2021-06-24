@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { StateContext, useGlobalState } from '../../config/store';
 
 import { createTicket } from '../../services/ticketServices';
+import timeConvert from '../../utils/timeConvert';
 
 const Appointments = () => {
     const [appointRender, setAppointRender] = useState([])
@@ -10,12 +11,17 @@ const Appointments = () => {
 
     const {dispatch, store} = useGlobalState()
 
+    
+
     const clickTicket = (event) => {
         console.log('creating ticket')
         console.log(event.target.value)
-        const apptTicketInfo = this.state.data.filter(el2 => el2.id == event.target.value)
+
+        const apptTicketInfo = data.filter(el2 => el2.id == event.target.value)
+
         console.log(apptTicketInfo)
 
+        //TODO add name and other info
         createTicket({
             appId: apptTicketInfo[0].id,
             appDate: apptTicketInfo[0].starts_at,
@@ -35,37 +41,34 @@ const Appointments = () => {
         const {patientInfo} = store
         // this.state.data = this.context.store.patientInfo.appointments
         setData(patientInfo.appointments)
-
-        // console.log(patientInfo)
-        console.log('patient appointments -',data)
-        //TODO change dates to date string
-        setAppointRender(data.map((el) => {
-            return <p key={`key_${el.id}`}>
-                        <table>
-                            <tr>
-                                <th>Appointment ID</th>
-                                <th>Appointment Start Date and Time</th>
-                                <th>Appointment Start Date and Time</th>
-                                <th>Request Change of Appointment Date or Time</th>
-                            </tr>
-                            <tr>
-                                <td>{el.id}</td>
-                                <td>{el.starts_at}</td>
-                                <td>{el.ends_at}</td>
-                                <button value={el.id} id="create_ticket" onClick={(event) => clickTicket(event)}>
-                                Make Change Request
-                                </button>
-                            </tr>
-                        </table>
-                    </p>
-        }))
+        
     }, [])
 
 
     return (
         <div className="apptwrapper">
             <h1>Appointments</h1>
-            {appointRender}
+            {data.map((el) => {
+                const {dateStart, hrStart, minStart, hrEnd, minEnd} = timeConvert(el.starts_at, el.ends_at)
+                return <div key={`key_${el.id}`}>
+                        <table>
+                            <tr>
+                                <th>Appointment Date</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Request Change of Date or Time</th>
+                            </tr>
+                            <tr>
+                                <td>{dateStart}</td>
+                                <td>{hrStart}:{minStart}</td>
+                                <td>{hrEnd}:{minEnd}</td>
+                                <button value={el.id} id="create_ticket" onClick={(event) => clickTicket(event)}>
+                                Make Change Request
+                                </button>
+                            </tr>
+                        </table>
+                    </div>
+            })}
         </div>
     )
 }
