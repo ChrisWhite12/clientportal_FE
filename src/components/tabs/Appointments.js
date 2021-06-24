@@ -1,8 +1,8 @@
-import React, {Component, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-import { StateContext, useGlobalState } from '../config/store';
+import { StateContext, useGlobalState } from '../../config/store';
 
-import { createTicket } from '../services/ticketServices';
+import { createTicket } from '../../services/ticketServices';
 
 const Appointments = () => {
     const [appointRender, setAppointRender] = useState([])

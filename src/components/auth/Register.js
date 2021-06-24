@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import {useGlobalState} from "../config/store"
-import {registerUser} from "../services/authServices"
+import {useGlobalState} from "../../config/store"
+import {registerUser} from "../../services/authServices"
 
 const Register = ({history}) => {
 
     const [userDetails, setUserDetails] = useState({
+        email: '',
         password: '',
         password_confirm: ''
     })
@@ -29,7 +30,7 @@ const Register = ({history}) => {
                         type: "setLoggedInUser",
                         data: userDetails.email
                     })
-                    history.push('/dashboard')
+                    history.push('/sign_in')
                 })
                 .catch((err) => {
                     console.log('failed to register')

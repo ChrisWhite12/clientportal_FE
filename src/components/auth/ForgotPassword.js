@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import {forgotPassword} from "../services/authServices"
+import {forgotPassword} from "../../services/authServices"
 
 const ForgotPassword = () => {
 

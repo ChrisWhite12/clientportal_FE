@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {createTicket, getTicket, updateTicket, deleteTicket} from '../services/ticketServices'
+import React, { useEffect, useState } from 'react'
+import {createTicket, getTicket, updateTicket, deleteTicket} from '../../services/ticketServices'
 
 const Notifications = () => {
 

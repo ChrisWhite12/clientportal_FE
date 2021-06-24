@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import {useGlobalState} from "../config/store"
-import {loginUser} from "../services/authServices"
 import {Link} from 'react-router-dom'
 import { Nav } from 'react-bootstrap';
+
+import {useGlobalState} from "../../config/store"
+import {loginUser} from "../../services/authServices"
 
 const Login = ({history}) => {
     const [userDetails, setUserDetails] = useState()

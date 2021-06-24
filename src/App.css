@@ -183,25 +183,30 @@
   filter: brightness(85%);
 }
 
-  #d {
-    padding: 19px;
-  }
+#d {
+  padding: 19px;
+}
 
-  #ci {
-    padding: 19px;
-    background-color: #9353AD;
-    line-height: auto;
-  }
+#ci {
+  padding: 19px;
+  background-color: #9353AD;
+  line-height: auto;
+}
 
-  #ba {
-    background-color: #27b0f4;
-    padding: 16px;
-  }
+#ba {
+  background-color: #27b0f4;
+  padding: 16px;
+}
 
-  #n {
-    padding: 19px;
-    background-color: #F7A04C;
-  }
+#n {
+  padding: 19px;
+  background-color: #F7A04C;
+}
+
+#lo{
+  padding: 19px;
+  background-color: #b65e5e;
+}
 
 /* Find this in Home.js */
 .home {
@@ -233,12 +238,6 @@
   background-color: white;
   margin: 4px;
   padding-top: 6px;
-}
-
-/* Find this in ClientInfo.js */
-.formwrapper {
-  width: 60%;
-  color: white;
 }
 
 /* Find this in Appointments.js */

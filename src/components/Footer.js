@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 
-cosnt Footer = () => {
+const Footer = () => {
 
   return (
     <div className="fixed-bottom"> 

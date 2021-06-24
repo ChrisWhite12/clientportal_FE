@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import {useGlobalState} from "../config/store"
-import { resetToken, updateUser } from '../services/authServices'
+import React, { useEffect, useState } from 'react'
+
+import {useGlobalState} from "../../config/store"
+import { resetToken, updateUser } from '../../services/authServices'
 
 const ResetPassword = ({history, match}) => {
 

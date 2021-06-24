@@ -17,8 +17,8 @@ async function loginUser(userInfo){
     return response.data
 }
 
-async function logoutUser(userInfo){
-    const response =  await api.get("/user/logout", userInfo)
+async function logoutUser(){
+    const response =  await api.get("/user/logout")
     console.log("logout from server", response)
     return response.data
 }
