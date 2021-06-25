@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import { Nav } from 'react-bootstrap';
 
 import {useGlobalState} from "../../config/store"
 import {loginUser} from "../../services/authServices"
@@ -45,10 +44,10 @@ const Login = ({history}) => {
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
                 <p className='msgText'>{message}</p>
-                <div>
+                {/* <div>
                     <input type="checkbox"></input>
                     <label className="label"> Remember Me</label>
-                </div>
+                </div> */}
                 <Link to="/forgot_password">
                     Forgot password
                 </Link>

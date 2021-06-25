@@ -303,3 +303,15 @@
   text-decoration: underline;
   color: blue
 }
+
+.notiItem{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.basic_btn{
+  margin: 5px;
+}

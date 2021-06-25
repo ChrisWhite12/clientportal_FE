@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StateContext } from '../../config/store';
 import { Button, FormInput, Select } from '../FormComponents';
-import { Link } from 'react-router-dom';
 import { useGlobalState } from '../../config/store'
 
 import { updatePatient } from '../../services/apiServices';
@@ -10,9 +8,8 @@ import '../../App.css';
 const UserInfo = (props) => {
     const [editState, setEditState] = useState(false)
     const [patientInfoData, setPatientInfoData] = useState({})
-    const [patientChangeData, setPatientChangeData] = useState({})
 
-    const {dispatch,store} = useGlobalState()
+    const {store} = useGlobalState()
 
     const sexOptions = ['Male', 'Female', 'Intersex', 'Female to Male', 'Male to Female']
 
@@ -20,7 +17,7 @@ const UserInfo = (props) => {
         const {patientInfo} = store
         console.log('patientInfo - UserInfo', patientInfo)
         setPatientInfoData(patientInfo.patient)
-    }, [])
+    }, [store])
 
     const handleEdit = () => {
         console.log('changing to edit')

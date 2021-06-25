@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {createTicket, getTicket, updateTicket, deleteTicket} from '../../services/ticketServices'
+import {getTicket, updateTicket, deleteTicket} from '../../services/ticketServices'
+
+import { Button } from 'react-bootstrap'
+
+import timeConvert from '../../utils/timeConvert'
 
 const Notifications = () => {
 
-    const [count, setCount] = useState(1)
     const [tickets, setTickets] = useState([])
 
     useEffect(() => {
@@ -17,42 +20,37 @@ const Notifications = () => {
             })
     },[])
 
-    // const clickTicket = () => {
-    //     console.log('creating ticket')
-    //     createTicket({
-    //         appId: count,
-    //         appDate: "1/1/21",
-    //         status: "pending",
-    //         notified: false,
-    //     })
-    //         .then((res) => {
-    //             console.log(res)
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    //     setCount(count + 1)
-    // }
-
     const handleAccept = (event) => {
-        let ticketUpdate = tickets.filter(el => el._id === event.target.value)[0]
+        let ticketUpdate = tickets.find(el => el._id === event.target.value)
+        let ticketInd = tickets.findIndex(el => el._id === event.target.value)
         ticketUpdate.status = 'accepted'
         updateTicket(ticketUpdate)
-        .then((res) => console.log(res))
+        .then((res) => {
+            const updatedTickets = [...tickets]
+            updatedTickets[ticketInd] = ticketUpdate
+            setTickets(updatedTickets)
+        })
         .catch((err) => console.log(err))
     }
 
     const handleReject = (event) => {
-        let ticketUpdate = tickets.filter(el => el._id === event.target.value)[0]
+        let ticketUpdate = tickets.find(el => el._id === event.target.value)
+        let ticketInd = tickets.findIndex(el => el._id === event.target.value)
         ticketUpdate.status = 'rejected'
         updateTicket(ticketUpdate)
-        .then((res) => console.log(res))
+        .then((res) => {
+            const updatedTickets = [...tickets]
+            updatedTickets[ticketInd] = ticketUpdate
+            setTickets(updatedTickets)
+        })
         .catch((err) => console.log(err))
     }
 
     const handleDelete = (event) => {
         deleteTicket(event.target.value)
-        .then((res) => console.log(res))
+        .then((res) => {
+            setTickets(prevState => prevState.filter(item => item._id !== event.target.value))
+        })
         .catch((err) => console.log(err))
     }
     
@@ -61,11 +59,20 @@ const Notifications = () => {
             <h1>Notifications</h1>
             <ul>
             {tickets.map((ticket) => {
-                return <li key={ticket._id}><p>Ticket: {ticket._id}</p><p>appId:{ticket.appId}</p><p>appDate: {ticket.appDate}</p> 
-                <p>status: {ticket.status}</p><p>userId: {ticket.userId}</p><p>pracId:{ticket.practitionerId}</p>
-                <button onClick={(event) => handleReject(event)} value={ticket._id}>Reject</button>
-                <button onClick={(event) => handleAccept(event)} value={ticket._id}>Accept</button>
-                <button onClick={(event) => handleDelete(event)} value={ticket._id}>Delete</button></li>
+                const {dateStart, hrStart, minStart} = timeConvert(ticket.appDate)
+                return <li key={ticket._id} className='notiItem'>
+                    <div>
+                        <p>Ticket: {ticket._id}</p>
+                        <p>Date: {dateStart} - {hrStart}:{minStart}</p> 
+                        <p>With {ticket.username}</p>
+                    </div>
+                    <div>
+                        <p>status: {ticket.status}</p>
+                        <Button className='basic_btn' value={ticket._id} variant='secondary' onClick={handleReject}>Reject</Button>
+                        <Button className='basic_btn' value={ticket._id} variant='primary' onClick={handleAccept}>Accept</Button>
+                        <Button className='basic_btn' value={ticket._id} variant='danger' onClick={handleDelete}>Delete</Button>
+                    </div>
+                </li>
             })}
             </ul>
             {/* <button id="create_ticket" onClick={clickTicket}>

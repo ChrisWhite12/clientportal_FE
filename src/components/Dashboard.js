@@ -45,7 +45,7 @@ const Dashboard = () => {
         .catch((err) => {
             console.log(err)
         })
-    },[])
+    },[dispatch])
 
     const handleLogout = ()  => {
         logoutUser()

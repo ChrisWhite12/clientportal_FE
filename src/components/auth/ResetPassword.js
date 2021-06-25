@@ -15,7 +15,6 @@ const ResetPassword = ({history, match}) => {
     const [errorState, setErrorState] = useState(false)
 
     useEffect(() => {
-        console.log(match.params.token)
         resetToken(match.params.token)
             .then(() => {
                 console.log('token ok')
@@ -25,7 +24,7 @@ const ResetPassword = ({history, match}) => {
                 setErrorState(true)
                 setMessage('Token Invalid')
             })
-    },[])
+    },[match.params.token])
 
     const handleChange = (event) => {
         const name = event.target.name

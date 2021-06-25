@@ -1,5 +1,5 @@
 
-const timeConvert = (timeStart, timeEnd) => {
+const timeConvert = (timeStart, timeEnd = new Date()) => {
     const zeroPad = (num, places) => {
         return String(num).padStart(places, '0')
     }

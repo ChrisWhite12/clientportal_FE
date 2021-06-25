@@ -37,7 +37,6 @@ const Register = ({history}) => {
                         history.push('/sign_in')
                     })
                     .catch((err) => {
-                        console.log('err', err)
                         setMessage(err.message)
                     })
             }
