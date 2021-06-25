@@ -23,11 +23,13 @@ import Home from './tabs/Home';
     
 const Dashboard = () => {
 
-    const {dispatch} = useGlobalState()
+    const {dispatch, store} = useGlobalState()
     const [loading, setLoading] = useState(true)
 
     let {path,url} = useRouteMatch()
     const history = useHistory()
+
+    const {role} = store 
 
     useEffect(() => {
         console.log("getting patient info")
@@ -65,9 +67,17 @@ const Dashboard = () => {
         <Router>
             <Nav defaultActiveKey="/" className="flex-column" id="sidenav">
                 <Nav.Link as={Link} className="sidenav_btn" id="d" eventKey="link-1" to={`${url}/`}>Dashboard</Nav.Link>
-                <Nav.Link as={Link} className="sidenav_btn" id="ci" eventKey="link-1" to={`${url}/info`}>Client Info</Nav.Link>
+
+                {role === 'user' 
+                    ? <Nav.Link as={Link} className="sidenav_btn" id="ci" eventKey="link-1" to={`${url}/info`}>Client Info</Nav.Link> 
+                    : <></>}
+
                 <Nav.Link as={Link} className="sidenav_btn" id="ba" eventKey="link-2" to={`${url}/appointments`}>Booked Appointments</Nav.Link>
-                <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link>
+                
+                {role === 'admin' 
+                ? <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link> 
+                : <></>}
+                
                 <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`${url}/`} onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
 

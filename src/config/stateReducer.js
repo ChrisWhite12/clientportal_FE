@@ -3,7 +3,8 @@ export default function (state, action) {
         case "setLoggedInUser": {
             return {
                 ...state,
-                loggedInUser: action.data
+                loggedInUser: action.data,
+                role: action.role
             }
         }
         case "setTicket": {

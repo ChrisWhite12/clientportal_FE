@@ -55,7 +55,7 @@ const Notifications = () => {
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
     }
-    //TODO change dates to dateStrings
+    
     return (
         <div className="notewrapper">
             <h1>Notifications</h1>

@@ -30,14 +30,9 @@ const ForgotPassword = () => {
             <h1>Password Reset</h1>
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
-                <p>{message}</p>
+                <p className='msgText'>{message}</p>
                 <input id="forgot_password_btn" type="submit"></input>
             </form>
-            
-
-            <Link to="/reset_password">
-                reset password
-            </Link>
         </div>
     )
 }

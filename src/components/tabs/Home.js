@@ -12,7 +12,6 @@ const Home = () => {
 
     const {dateStart, hrStart, minStart, hrEnd, minEnd} = timeConvert(patientInfo.appointments[0]?.appointment_start, patientInfo.appointments[0]?.appointment_end)
 
-    //TODO change time to date string
     return (
 
         <div className="home">

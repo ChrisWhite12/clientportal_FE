@@ -26,10 +26,7 @@ function App() {
     loggedInUser: null,
     patientInfo: {
       appointments: [],
-      patient: {
-        appointment_start: '',
-        appointment_end: ''
-      }
+      patient: {}
     }
   }
 
@@ -37,6 +34,12 @@ function App() {
   //TODO handle tickets
   //TODO password reset with live server
   //TODO complete testing
+  //TODO cancel request
+  //TODO appointment type
+  //TODO no notifications for users , only admin
+  //TODO user tab for admin
+  // as admin, show booked appoinments? 
+
   //optional twilio sms
 
   const [store, dispatch] = useReducer(stateReducer,initialState)

@@ -24,10 +24,12 @@ const Login = ({history}) => {
     function handleSubmit(event){
         event.preventDefault()
         loginUser(userDetails)
-            .then(() => {
+            .then((resData) => {
+                console.log('resData',resData);
                 dispatch({
                     type: "setLoggedInUser",
-                    data: userDetails.email
+                    data: userDetails.email,
+                    role: resData.user.role
                 })
                 history.push('/dashboard')
             })
@@ -42,7 +44,7 @@ const Login = ({history}) => {
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
-                <p>{message}</p>
+                <p className='msgText'>{message}</p>
                 <div>
                     <input type="checkbox"></input>
                     <label className="label"> Remember Me</label>

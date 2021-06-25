@@ -46,7 +46,7 @@ const ResetPassword = ({history, match}) => {
                         type: "setLoggedInUser",
                         data: userDetails.email
                     })
-                    history.push('/')
+                    history.push('/sign_in')
                 })
                 .catch((err) => {
                     setMessage(`Error !! Can't reset password try again!`)
