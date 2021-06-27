@@ -75,9 +75,6 @@ const Notifications = () => {
                 </li>
             })}
             </ul>
-            {/* <button id="create_ticket" onClick={clickTicket}>
-                    Create Ticket
-            </button> */}
         </div>
     )
 }

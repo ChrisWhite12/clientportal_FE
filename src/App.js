@@ -11,7 +11,6 @@ import ForgotPassword from './components/auth/ForgotPassword';
 import ResetPassword from './components/auth/ResetPassword';
 
 import Dashboard from './components/Dashboard';
-import UsersAll from './components/Users';
 import Footer from './components/Footer';
 
 import stateReducer from './config/stateReducer'
@@ -31,14 +30,9 @@ function App() {
   }
 
   //TODO mobile version
-  //TODO handle tickets
   //TODO password reset with live server
   //TODO complete testing
-  //TODO cancel request
-  //TODO appointment type
-  //TODO no notifications for users , only admin
-  //TODO user tab for admin
-  // as admin, show booked appoinments? 
+  //TODO cancel change request
 
   //optional twilio sms
 
@@ -57,7 +51,6 @@ function App() {
           <Route path='/register' component={Register} />
           <Route path='/forgot_password' component={ForgotPassword} />
           <Route path='/reset_password/:token' render={(props) => <ResetPassword {...props} />}/>
-          <Route exact path='/users' component={UsersAll} />
         </Switch>
         <Footer />
       </div>

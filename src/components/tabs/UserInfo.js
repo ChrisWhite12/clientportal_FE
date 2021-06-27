@@ -9,22 +9,25 @@ const UserInfo = (props) => {
     const [editState, setEditState] = useState(false)
     const [patientInfoData, setPatientInfoData] = useState({})
 
-    const {store} = useGlobalState()
+    const {dispatch, store} = useGlobalState()
+    const {patientInfo} = store
 
     const sexOptions = ['Male', 'Female', 'Intersex', 'Female to Male', 'Male to Female']
 
     useEffect(() => {
-        const {patientInfo} = store
-        console.log('patientInfo - UserInfo', patientInfo)
         setPatientInfoData(patientInfo.patient)
-    }, [store])
+    }, [patientInfo.patient])
 
     const handleEdit = () => {
         console.log('changing to edit')
         if(editState){                          //when saving
             updatePatient(patientInfoData)
             .then((data) => {
-                console.log(data)
+
+                dispatch({
+                    type: 'setPatientInfo',
+                    data: { ...patientInfo, patient: patientInfoData}
+                })
             })
             .catch((err) => {
                 console.log(err)
@@ -43,7 +46,6 @@ const UserInfo = (props) => {
                 [name]: value
             }
         })
-        console.log(patientInfoData)
    }
 
     return (
