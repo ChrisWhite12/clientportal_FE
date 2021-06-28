@@ -1,8 +1,20 @@
 import api from '../config/api'
 
-async function getTicket(){
+async function getTickets(){
     try{
         const response =  await api.get(`/ticket`)
+        console.log("get tickets from server", response)
+        return response.data
+    }
+    catch(error){
+        console.log("get ticket from server")
+        throw(error)
+    }
+}
+
+async function getTicket(appId){
+    try{
+        const response =  await api.get(`/ticket/${appId}`)
         console.log("get ticket from server", response)
         return response.data
     }
@@ -49,6 +61,7 @@ async function deleteTicket(id){
 }
 
 export{
+    getTickets,
     getTicket,
     createTicket,
     deleteTicket,

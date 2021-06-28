@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {getTicket, updateTicket, deleteTicket} from '../../services/ticketServices'
+import {getTickets, updateTicket, deleteTicket} from '../../services/ticketServices'
 
 import { Button } from 'react-bootstrap'
 
@@ -10,7 +10,7 @@ const Notifications = () => {
     const [tickets, setTickets] = useState([])
 
     useEffect(() => {
-        getTicket()
+        getTickets()
             .then((res) => {
                 console.log(res)
                 setTickets(res)

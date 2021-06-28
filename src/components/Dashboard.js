@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useGlobalState} from '../config/store';
 import '../App.css';
-import { Nav } from 'react-bootstrap';
+import { Nav, Spinner } from 'react-bootstrap';
 
 import { getPatient } from '../services/apiServices';
 import {logoutUser} from '../services/authServices'
@@ -32,10 +32,8 @@ const Dashboard = () => {
     const {role} = store 
 
     useEffect(() => {
-        console.log("getting patient info")
         getPatient()
         .then((data) => {
-            console.log(data)
             dispatch({
                 type: "setPatientInfo",
                 data: data
@@ -78,11 +76,13 @@ const Dashboard = () => {
                 ? <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link> 
                 : <></>}
                 
-                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`${url}/`} onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`${url}/sign_in`} onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
 
             {loading ? 
-                <p>Loading ... </p>
+                <div className='spinnerCont'>
+                    <Spinner animation='border' variant='primary'/>
+                </div>
             :
                 <Switch>
                     <Route exact path={`${path}`} component={Home}/>

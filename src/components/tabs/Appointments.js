@@ -1,19 +1,18 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react'
 
 import { useGlobalState } from '../../config/store';
-import { getTicket } from '../../services/ticketServices'
 import Appointment from '../Appointment';
 
 const Appointments = () => {
     const [data, setData] = useState({})
-    const { store, dispatch } = useGlobalState()
+    const { store } = useGlobalState()
     const [isLoading, setIsLoading] = useState(true)
     const {patientInfo} = store
     
     useEffect(() => {
         setData(patientInfo)
         setIsLoading(false)
-    }, [store])
+    }, [store, patientInfo])
 
 
     return (

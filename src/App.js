@@ -32,7 +32,6 @@ function App() {
   //TODO mobile version
   //TODO password reset with live server
   //TODO complete testing
-  //TODO cancel change request
 
   //optional twilio sms
 
