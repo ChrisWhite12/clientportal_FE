@@ -14,6 +14,7 @@ const Appointments = () => {
             setData(patientInfo)
         }
         else if(role === 'admin'){
+            console.log('pracInfo',pracInfo);
             setData(pracInfo)
         }
         setIsLoading(false)
@@ -28,13 +29,13 @@ const Appointments = () => {
                 <p>Start</p>
                 <p>End</p>
                 <p>Appointment</p>
-                <p>Request Change of Date or Time</p>
+                { role === 'user' ? <p>Request Change of Date or Time</p> : <p>Patient</p>}
             </div>
             {!isLoading && data.appointments && data.appointments.map((el) => {
                 return <Appointment 
                 key = {`key_${el.id}`} 
                 appData = {el}
-                // number = {data.patient.patient_phone_numbers[0].number} 
+                number = {role === 'user' ? data.patient.patient_phone_numbers[0].number : undefined} 
                 />
             })}
         </div>

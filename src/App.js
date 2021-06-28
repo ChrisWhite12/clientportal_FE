@@ -30,12 +30,9 @@ function App() {
   }
 
   //TODO mobile version
-  //TODO password reset with live server
   //TODO complete testing
-  //TODO password reset - button and loading
-  //TODO pract -  get tickets, get appointments
   //TODO twilio - change appointment notification
-
+  
   const [store, dispatch] = useReducer(stateReducer,initialState)
   const {loggedInUser} = store
   
@@ -43,7 +40,6 @@ function App() {
     <StateContext.Provider value={{store,dispatch}}>
       <Router>  
       <div className="App">
-        {/* <MainNav /> */}
         <Switch>
           <Route exact path='/'>{(loggedInUser)? <Redirect to="/dashboard" /> : <Redirect to="/sign_in" />}</Route>
           <Route exact path='/dashboard' component={Dashboard}></Route>

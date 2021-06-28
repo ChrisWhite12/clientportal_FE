@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { createTicket, deleteTicket, getTicket} from '../services/ticketServices';
 import timeConvert from '../utils/timeConvert';
+import { useGlobalState } from '../config/store';
 
 import { Button, Alert, Spinner } from 'react-bootstrap'
 
@@ -10,6 +11,10 @@ const Appointment = (props) => {
     const [alert, setAlert] = useState(false)
     const [ticMatch, setTicMatch] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+
+    const { store } = useGlobalState()
+    const { role } = store
+
 
     useEffect(() => {
         console.log('in useEffect')
@@ -68,8 +73,13 @@ const Appointment = (props) => {
                         <p>{hrStart}:{minStart}</p>
                         <p>{hrEnd}:{minEnd}</p>
                         <p>{props.appData.appTypeName}</p>
-                        <Button value={props.appData.id} variant={reqState === 'change' ? 'primary' : 'warning' }
-                        onClick={clickTicket}>{reqState === 'change' ? 'Change Request' : 'Cancel Request' }</Button>
+                        {
+                            role === 'user' ?
+                            <Button value={props.appData.id} variant={reqState === 'change' ? 'primary' : 'warning' }
+                            onClick={clickTicket}>{reqState === 'change' ? 'Change Request' : 'Cancel Request' }</Button>
+                            :
+                            <p>{props.appData.patient_name}</p>
+                        }
                     </div>
                     <div>
                         {alert ?

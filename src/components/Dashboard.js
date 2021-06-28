@@ -91,7 +91,7 @@ const Dashboard = () => {
                 ? <Nav.Link as={Link} className="sidenav_btn" id="n" eventKey="link-3" to={`${url}/notifications`}>Notifications</Nav.Link> 
                 : <></>}
                 
-                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`${url}/sign_in`} onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link as={Link} className="sidenav_btn" id="lo" eventKey="link-4" to={`/sign_in`} onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
 
             {loading ? 
