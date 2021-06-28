@@ -3,7 +3,7 @@ import {useGlobalState} from '../config/store';
 import '../App.css';
 import { Nav, Spinner } from 'react-bootstrap';
 
-import { getPatient } from '../services/apiServices';
+import { getPatient, getPractitionerApp } from '../services/apiServices';
 import {logoutUser} from '../services/authServices'
 
 import {
@@ -29,21 +29,36 @@ const Dashboard = () => {
     let {path,url} = useRouteMatch()
     const history = useHistory()
 
-    const {role} = store 
+    const {role, pracId} = store 
 
     useEffect(() => {
-        getPatient()
-        .then((data) => {
-            dispatch({
-                type: "setPatientInfo",
-                data: data
+        if(role === 'user'){
+            getPatient()
+            .then((data) => {
+                dispatch({
+                    type: "setPatientInfo",
+                    data: data
+                })
+                setLoading(false)
             })
-            setLoading(false)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    },[dispatch])
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+        else if(role === 'admin'){
+            getPractitionerApp(pracId)
+            .then((data) => {
+                dispatch({
+                    type: "setPracInfo",
+                    data: data
+                })
+                setLoading(false)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+    },[dispatch, role, pracId])
 
     const handleLogout = ()  => {
         logoutUser()
@@ -53,7 +68,7 @@ const Dashboard = () => {
                     type: "setLoggedInUser",
                     data: null
                 })
-                history.push('/sign_in')
+                history.push(`/sign_in`)
             })
             .catch((err) => {
                 console.log("err", err)

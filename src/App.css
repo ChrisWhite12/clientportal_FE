@@ -124,6 +124,13 @@
   border-color: white;
 }
 
+.btn-color1{
+  color: #9353AD
+}
+
+.btn-color2{
+  color: #2598D3;
+}
 .sign_up_btn{
   color:white;
   height: 50px;
@@ -136,6 +143,38 @@
 }
 
 .sign_up_btn:hover {
+  transition-duration: 0.3s;
+  background-color: #76428b;
+}
+
+.pass_reset_btn{
+  color:white;
+  height: 50px;
+  width: 60%;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #9353AD;
+  border-style: solid;
+  border-color: #9353AD;
+}
+
+.pass_reset_btn:hover {
+  transition-duration: 0.3s;
+  background-color: #76428b;
+}
+
+.forgot_pass_btn{
+  color:white;
+  height: 50px;
+  width: 60%;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #9353AD;
+  border-style: solid;
+  border-color: #9353AD;
+}
+
+.forgot_pass_btn:hover {
   transition-duration: 0.3s;
   background-color: #76428b;
 }

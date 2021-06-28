@@ -4,7 +4,8 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loggedInUser: action.data,
-                role: action.role
+                role: action.role,
+                pracId: action.pracId
             }
         }
         case "setTicket": {
@@ -23,6 +24,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 patientInfo: action.data
+            }
+        }
+        case "setPracInfo": {
+            return {
+                ...state,
+                pracInfo: action.data
             }
         }
         default: 

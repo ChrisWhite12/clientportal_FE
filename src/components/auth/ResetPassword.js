@@ -69,7 +69,7 @@ const ResetPassword = ({history, match}) => {
                     <input className="login_fields" name="password_confirm" onChange={handleChange} type="password" placeholder="password confirm"></input>
                     {!userDetails["password"] ? <p></p> : (userDetails["password"] === userDetails["password_confirm"])? <p style={{color: "green"}}>passwords match</p>: <p style={{color: "red"}}>passwords don't match</p>}
                     <p>{message}</p>
-                    <input id="forgot_password_btn" type="submit"></input>
+                    <input className="pass_reset_btn" type="submit"></input>
                 </div>
                 ):
             (<p>{message}</p>)}

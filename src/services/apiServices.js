@@ -12,6 +12,18 @@ async function getPatient(){
     }
 }
 
+async function getPractitionerApp(id){
+    try{
+        const response =  await api.get(`/api/practitioner/appointments/${id}`)
+        console.log("getPractitioner from server", response)
+        return response.data
+    }
+    catch(error){
+        console.log("getPractitioner from server - err")
+        throw(error)
+    }
+}
+
 async function updatePatient(patientInfo){
     try{
         const response =  await api.put(`/api/patient`, patientInfo)
@@ -38,6 +50,7 @@ async function getAppointments(){
 
 export{
     getPatient,
+    getPractitionerApp,
     getAppointments,
     updatePatient
 }

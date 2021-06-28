@@ -7,12 +7,17 @@ const Appointments = () => {
     const [data, setData] = useState({})
     const { store } = useGlobalState()
     const [isLoading, setIsLoading] = useState(true)
-    const {patientInfo} = store
+    const {patientInfo, pracInfo, role} = store
     
     useEffect(() => {
-        setData(patientInfo)
+        if(role === 'user'){
+            setData(patientInfo)
+        }
+        else if(role === 'admin'){
+            setData(pracInfo)
+        }
         setIsLoading(false)
-    }, [store, patientInfo])
+    }, [store, patientInfo, pracInfo, role])
 
 
     return (
@@ -29,7 +34,7 @@ const Appointments = () => {
                 return <Appointment 
                 key = {`key_${el.id}`} 
                 appData = {el}
-                number = {data.patient.patient_phone_numbers[0].number} 
+                // number = {data.patient.patient_phone_numbers[0].number} 
                 />
             })}
         </div>

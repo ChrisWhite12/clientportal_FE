@@ -28,13 +28,18 @@ const Login = ({history}) => {
                 dispatch({
                     type: "setLoggedInUser",
                     data: userDetails.email,
-                    role: resData.user.role
+                    role: resData.user.role,
+                    pracId: resData.user.pracId
                 })
                 history.push('/dashboard')
             })
             .catch((err) => {
                 setMessage('Invalid email or password')
             })
+    }
+
+    const handleRegister = () => {
+        history.push('/register')
     }
 
     return (
@@ -44,17 +49,13 @@ const Login = ({history}) => {
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <input className="login_fields" name="password" onChange={handleChange} type="password" placeholder="password"></input>
                 <p className='msgText'>{message}</p>
-                {/* <div>
-                    <input type="checkbox"></input>
-                    <label className="label"> Remember Me</label>
-                </div> */}
+
                 <Link to="/forgot_password">
                     Forgot password
                 </Link>
+
                 <input className="login_btn" type="submit" value="Log In"></input>
-                <Link className="sign_up_btn" to="./Register">
-                    Sign Up
-                </Link>
+                <input className="sign_up_btn" type="button" value="Register" onClick={handleRegister}></input>
             </form>
         </div>
     )

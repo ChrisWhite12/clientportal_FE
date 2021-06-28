@@ -30,7 +30,7 @@ const ForgotPassword = () => {
             <form className="login_card" onSubmit={handleSubmit}>
                 <input className="login_fields" name="email" onChange={handleChange} type="text" placeholder="email"></input>
                 <p className='msgText'>{message}</p>
-                <input id="forgot_password_btn" type="submit"></input>
+                <input className="forgot_pass_btn" type="submit"></input>
             </form>
         </div>
     )
