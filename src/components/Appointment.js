@@ -32,26 +32,29 @@ const Appointment = (props) => {
         })
     },[props])
 
-    const clickTicket = () => {
+    const clickTicket = async () => {
 
         if(reqState === 'change'){
             setReqState('cancel')
             setAlert(true)
             setTimeout(() => setAlert(false), 5000)
-            createTicket({
-                username: props.appData.patient_name,
-                contact: props.number,
-                appId: props.appData.id,
-                appDate: props.appData.starts_at,
-                status: "pending",
-                notified: false,
-            })
-            .then(ticRes => {
+
+            try{
+                const ticRes = await createTicket({
+                    username: props.appData.patient_name,
+                    contact: props.number,
+                    appId: props.appData.id,
+                    appDate: props.appData.starts_at,
+                    status: "pending",
+                    notified: false,
+                })
                 console.log('sending message')
+                await sendMessage(`Change request for ${props.appData.patient_name}, Time: ${new Date(props.appData.starts_at).toDateString()}, Contact: ${props.number}`)
                 setTicMatch(ticRes.ticId)
-                //TODO send sms to practitioner
-                sendMessage(`Change request for ${props.appData.patient_name}, Time: ${new Date(props.appData.starts_at).toDateString()}, Contact: ${props.number}`)
-            })
+            }
+            catch(err){
+                console.log('ticCreate err',err)
+            }
         }
         else{
             setReqState('change')

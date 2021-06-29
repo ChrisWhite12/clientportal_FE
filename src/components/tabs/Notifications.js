@@ -21,32 +21,40 @@ const Notifications = () => {
             })
     },[])
 
-    const handleAccept = (event) => {
+    const handleAccept = async (event) => {
         let ticketUpdate = tickets.find(el => el._id === event.target.value)
         let ticketInd = tickets.findIndex(el => el._id === event.target.value)
         ticketUpdate.status = 'accepted'
-        updateTicket(ticketUpdate)
-        .then((res) => {
+        
+        try{
+            await updateTicket(ticketUpdate)
+            await sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been accepted`)
+            
             const updatedTickets = [...tickets]
             updatedTickets[ticketInd] = ticketUpdate
             setTickets(updatedTickets)
-            sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been accepted`)
-        })
-        .catch((err) => console.log(err))
+        }
+        catch(err){
+            console.log('err',err);
+        }
+    
     }
 
-    const handleReject = (event) => {
+    const handleReject = async (event) => {
         let ticketUpdate = tickets.find(el => el._id === event.target.value)
         let ticketInd = tickets.findIndex(el => el._id === event.target.value)
         ticketUpdate.status = 'rejected'
-        updateTicket(ticketUpdate)
-        .then((res) => {
+        try{
+            await updateTicket(ticketUpdate)
+            await sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been rejected`)
+            
             const updatedTickets = [...tickets]
             updatedTickets[ticketInd] = ticketUpdate
             setTickets(updatedTickets)
-            sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been rejected`)
-        })
-        .catch((err) => console.log(err))
+        }
+        catch(err){
+            console.log('err',err);
+        }
     }
 
     const handleDelete = (event) => {
