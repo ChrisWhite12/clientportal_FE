@@ -16,8 +16,6 @@ import Footer from './components/Footer';
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/store';
 
-
-
 function App() {
   
   // initial state for state reducer

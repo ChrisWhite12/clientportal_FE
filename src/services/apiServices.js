@@ -48,9 +48,22 @@ async function getAppointments(){
     }
 }
 
+async function sendMessage(text){
+    try{
+        const response =  await api.post(`/phone`, {text})
+        console.log("sendMessage from server", response)
+        return response.data
+    }
+    catch(error){
+        console.log("sendMessage from server - err")
+        throw(error)
+    }
+}
+
 export{
     getPatient,
     getPractitionerApp,
     getAppointments,
-    updatePatient
+    updatePatient,
+    sendMessage
 }

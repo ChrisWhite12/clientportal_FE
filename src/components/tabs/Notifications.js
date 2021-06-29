@@ -4,6 +4,7 @@ import {getTickets, updateTicket, deleteTicket} from '../../services/ticketServi
 import { Button } from 'react-bootstrap'
 
 import timeConvert from '../../utils/timeConvert'
+import { sendMessage } from '../../services/apiServices'
 
 const Notifications = () => {
 
@@ -29,6 +30,7 @@ const Notifications = () => {
             const updatedTickets = [...tickets]
             updatedTickets[ticketInd] = ticketUpdate
             setTickets(updatedTickets)
+            sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been accepted`)
         })
         .catch((err) => console.log(err))
     }
@@ -42,6 +44,7 @@ const Notifications = () => {
             const updatedTickets = [...tickets]
             updatedTickets[ticketInd] = ticketUpdate
             setTickets(updatedTickets)
+            sendMessage(`Your appointment on ${new Date(ticketUpdate.appDate).toDateString()}. Your change request has been rejected`)
         })
         .catch((err) => console.log(err))
     }

@@ -4,6 +4,7 @@ import timeConvert from '../utils/timeConvert';
 import { useGlobalState } from '../config/store';
 
 import { Button, Alert, Spinner } from 'react-bootstrap'
+import { sendMessage } from '../services/apiServices';
 
 const Appointment = (props) => {
     const {dateStart, hrStart, minStart, hrEnd, minEnd} = timeConvert(props.appData.starts_at, props.appData.ends_at)
@@ -46,7 +47,10 @@ const Appointment = (props) => {
                 notified: false,
             })
             .then(ticRes => {
+                console.log('sending message')
                 setTicMatch(ticRes.ticId)
+                //TODO send sms to practitioner
+                sendMessage(`Change request for ${props.appData.patient_name}, Time: ${new Date(props.appData.starts_at).toDateString()}, Contact: ${props.number}`)
             })
         }
         else{
