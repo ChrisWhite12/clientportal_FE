@@ -19,7 +19,6 @@ const UserInfo = (props) => {
     }, [patientInfo.patient])
 
     const handleEdit = () => {
-        console.log('changing to edit')
         if(editState){                          //when saving
             updatePatient(patientInfoData)
             .then((data) => {
@@ -32,6 +31,8 @@ const UserInfo = (props) => {
             .catch((err) => {
                 console.log(err)
             })
+
+
         }
         setEditState(!editState)
     }

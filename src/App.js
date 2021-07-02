@@ -29,7 +29,6 @@ function App() {
 
   //TODO mobile version
   //TODO complete testing
-  //TODO twilio - change appointment notification
   
   const [store, dispatch] = useReducer(stateReducer,initialState)
   const {loggedInUser} = store

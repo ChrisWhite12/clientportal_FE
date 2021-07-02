@@ -26,7 +26,7 @@ const Home = () => {
             <div id="nxtappt">
                 <h3>Next Appointment</h3>
                 <p>Your Next Appointment Is:</p>
-                {(timeObj && (patientInfo.appointments.length > 0 || pracInfo.appointments.length > 0))?
+                {(timeObj && ((patientInfo && patientInfo.appointments.length > 0) || (pracInfo && pracInfo.appointments.length > 0)))?
                     <div>
                         <p>{timeObj.dateStart}</p>
                         <p>{timeObj.hrStart}:{timeObj.minStart} to {timeObj.hrEnd}:{timeObj.minEnd}</p>

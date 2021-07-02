@@ -1,10 +1,10 @@
 import React, {useRef, useState} from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { validate } from 'validate.js'
 import {useGlobalState} from "../../config/store"
 import {registerUser} from "../../services/authServices"
 
 const Register = ({history}) => {
-
     const [userDetails, setUserDetails] = useState({
         email: '',
         password: '',
@@ -26,26 +26,49 @@ const Register = ({history}) => {
 
     function handleSubmit(event){
         event.preventDefault()
-        if(userDetails["password"] === userDetails["password_confirm"]){
-            if(tcState.current.checked){
-                registerUser(userDetails)
-                    .then(() => {
-                        dispatch({
-                            type: "setLoggedInUser",
-                            data: userDetails.email
+
+        console.log('userDetails.password',userDetails.password);
+
+        const valCred = validate({email: userDetails.email, password: userDetails.password},{
+            email: {
+                presence: true,
+                email: true
+            },
+            password: {
+                presence: true,
+                length: {
+                    minimum: 6,
+                    message: 'must be more than 6 characters'
+                }
+            }
+        })
+
+        console.log('valCred',valCred);
+        if(!valCred){
+            if(userDetails["password"] === userDetails["password_confirm"]){
+                if(tcState.current.checked){
+                    registerUser(userDetails)
+                        .then(() => {
+                            dispatch({
+                                type: "setLoggedInUser",
+                                data: userDetails.email
+                            })
+                            history.push('/sign_in')
                         })
-                        history.push('/sign_in')
-                    })
-                    .catch((err) => {
-                        setMessage(err.message)
-                    })
+                        .catch((err) => {
+                            setMessage(err.message)
+                        })
+                }
+                else{
+                    setMessage('Agree to the T&C')
+                }
             }
             else{
-                setMessage('Agree to the T&C')
+                setMessage('Passwords do not match')
             }
         }
         else{
-            setMessage('Passwords do not match')
+            setMessage((valCred.username && valCred.username[0]), ' ', (valCred.password && valCred.password[0]))
         }
     }
 
