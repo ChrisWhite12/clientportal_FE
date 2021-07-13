@@ -27,8 +27,6 @@ const Register = ({history}) => {
     function handleSubmit(event){
         event.preventDefault()
 
-        console.log('userDetails.password',userDetails.password);
-
         const valCred = validate({email: userDetails.email, password: userDetails.password},{
             email: {
                 presence: true,

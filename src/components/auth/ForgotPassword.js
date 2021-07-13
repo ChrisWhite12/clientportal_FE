@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 import {forgotPassword} from "../../services/authServices"
-import validate from 'validate.js'
+import { validate } from 'validate.js'
 
 const ForgotPassword = () => {
-    //TODO validate js
-
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState(null)
 
@@ -14,12 +12,18 @@ const ForgotPassword = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        console.log('email',email);
 
-        const valEmail = validate({from: email}, {from: {
-            email: true
-        }})
+        const valEmail = validate({email: email},{
+            email: {
+                presence: true,
+                email: true
+            },
+        })
+
+        console.log('valEmail',valEmail);
         
-        if(valEmail){
+        if(!valEmail){
             forgotPassword(email).then(() => {
                 console.log('submit')
                 setMessage('Link sent')
